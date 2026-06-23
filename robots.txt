@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tl8899.live/sitemap.xml

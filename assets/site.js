@@ -1,0 +1,1 @@
+const topBtn=document.getElementById("top");window.addEventListener("scroll",()=>topBtn&&topBtn.classList.toggle("show",scrollY>500));topBtn&&topBtn.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
