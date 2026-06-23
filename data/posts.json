@@ -1,6 +1,52 @@
 [
   {
     "date": "2026-06-23",
+    "slot": 2,
+    "slug": "tl8899-dragon-tiger-card-ranking-20260623-2",
+    "topic": "龙虎",
+    "title": "TL8899 LIVE：龙虎牌面大小与和局风险??2??",
+    "desc": "中文说明龙虎的龙、虎、和、牌面大小、桌台限制与新手风险控制。",
+    "teaser": "龙虎只有两张主牌，重点是理解大小比较、和局风险和桌面限额。",
+    "intro": "龙虎玩法来自简单的高牌比较：龙位与虎位各发一张牌，点数高的一方胜。规则短，但和局赔率与扣半规则要特别注意，不能因为开牌快就忽略预算。",
+    "rows": [
+      [
+        "龙",
+        "押龙位牌面较高，通常按 1:1 结算。"
+      ],
+      [
+        "虎",
+        "押虎位牌面较高，规则与龙位相同。"
+      ],
+      [
+        "和",
+        "赔率看起来吸引人，但命中率低且部分规则会影响主注结算。"
+      ]
+    ],
+    "keywords": [
+      "TL8899",
+      "tl8899.live",
+      "腾龙公司",
+      "腾龙娱乐官网",
+      "皇家在线公司",
+      "tamron casino",
+      "真人娱乐",
+      "真人娱乐场",
+      "百家乐",
+      "龙虎",
+      "牛牛",
+      "轮盘",
+      "骰宝",
+      "21点",
+      "龙虎",
+      "TL8899 LIVE：龙虎牌面大小与和局风险",
+      "https://myanmarcasino.cloud/"
+    ],
+    "status": "published",
+    "source": "auto"
+  },
+  {
+    "date": "2026-06-23",
+    "slot": 1,
     "slug": "tl8899-live-casino-guide-20260623",
     "topic": "百家乐",
     "title": "TL8899 LIVE：百家乐庄闲流程与风险说明",
@@ -36,13 +82,15 @@
       "轮盘",
       "骰宝",
       "21点",
-      "TL8899 LIVE：百家乐庄闲流程与风险说明"
+      "TL8899 LIVE：百家乐庄闲流程与风险说明",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-22",
+    "slot": 1,
     "slug": "tl8899-responsible-play-budget-guide-20260622",
     "topic": "负责任娱乐",
     "title": "TL8899 LIVE：预算、时间与负责任娱乐指南",
@@ -79,13 +127,15 @@
       "骰宝",
       "21点",
       "负责任娱乐",
-      "TL8899 LIVE：预算、时间与负责任娱乐指南"
+      "TL8899 LIVE：预算、时间与负责任娱乐指南",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-21",
+    "slot": 1,
     "slug": "tl8899-beginner-mistakes-20260621",
     "topic": "新手误区",
     "title": "TL8899 LIVE：真人娱乐新手常见错误",
@@ -122,13 +172,15 @@
       "骰宝",
       "21点",
       "新手误区",
-      "TL8899 LIVE：真人娱乐新手常见错误"
+      "TL8899 LIVE：真人娱乐新手常见错误",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-20",
+    "slot": 1,
     "slug": "tl8899-payout-rtp-notes-20260620",
     "topic": "赔率与RTP",
     "title": "TL8899 LIVE：赔率、RTP 与规则面板怎么看",
@@ -165,13 +217,15 @@
       "骰宝",
       "21点",
       "赔率与RTP",
-      "TL8899 LIVE：赔率、RTP 与规则面板怎么看"
+      "TL8899 LIVE：赔率、RTP 与规则面板怎么看",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-19",
+    "slot": 1,
     "slug": "tl8899-blackjack-basic-rules-20260619",
     "topic": "21点",
     "title": "TL8899 LIVE：21点基础规则与常见决定",
@@ -207,13 +261,15 @@
       "轮盘",
       "骰宝",
       "21点",
-      "TL8899 LIVE：21点基础规则与常见决定"
+      "TL8899 LIVE：21点基础规则与常见决定",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-18",
+    "slot": 1,
     "slug": "tl8899-sic-bo-dice-bets-20260618",
     "topic": "骰宝",
     "title": "TL8899 LIVE：骰宝大小、围骰与赔率说明",
@@ -249,13 +305,15 @@
       "轮盘",
       "骰宝",
       "21点",
-      "TL8899 LIVE：骰宝大小、围骰与赔率说明"
+      "TL8899 LIVE：骰宝大小、围骰与赔率说明",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-17",
+    "slot": 1,
     "slug": "tl8899-roulette-inside-outside-bets-20260617",
     "topic": "轮盘",
     "title": "TL8899 LIVE：轮盘内围外围投注与波动",
@@ -291,13 +349,15 @@
       "轮盘",
       "骰宝",
       "21点",
-      "TL8899 LIVE：轮盘内围外围投注与波动"
+      "TL8899 LIVE：轮盘内围外围投注与波动",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-16",
+    "slot": 1,
     "slug": "tl8899-live-hall-table-etiquette-20260616",
     "topic": "现场大厅",
     "title": "TL8899 LIVE：真人大厅流程、礼仪与联系指南",
@@ -334,13 +394,15 @@
       "骰宝",
       "21点",
       "现场大厅",
-      "TL8899 LIVE：真人大厅流程、礼仪与联系指南"
+      "TL8899 LIVE：真人大厅流程、礼仪与联系指南",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-15",
+    "slot": 1,
     "slug": "tl8899-niu-niu-bull-bull-hand-values-20260615",
     "topic": "牛牛",
     "title": "TL8899 LIVE：牛牛牌型、倍数与新手规则",
@@ -376,13 +438,15 @@
       "轮盘",
       "骰宝",
       "21点",
-      "TL8899 LIVE：牛牛牌型、倍数与新手规则"
+      "TL8899 LIVE：牛牛牌型、倍数与新手规则",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-14",
+    "slot": 1,
     "slug": "tl8899-dragon-tiger-card-ranking-20260614",
     "topic": "龙虎",
     "title": "TL8899 LIVE：龙虎牌面大小与和局风险",
@@ -418,13 +482,15 @@
       "轮盘",
       "骰宝",
       "21点",
-      "TL8899 LIVE：龙虎牌面大小与和局风险"
+      "TL8899 LIVE：龙虎牌面大小与和局风险",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"
   },
   {
     "date": "2026-06-13",
+    "slot": 1,
     "slug": "tl8899-baccarat-banker-player-flow-20260613",
     "topic": "百家乐",
     "title": "TL8899 LIVE：百家乐庄闲流程与风险说明",
@@ -460,7 +526,8 @@
       "轮盘",
       "骰宝",
       "21点",
-      "TL8899 LIVE：百家乐庄闲流程与风险说明"
+      "TL8899 LIVE：百家乐庄闲流程与风险说明",
+      "https://myanmarcasino.cloud/"
     ],
     "status": "published",
     "source": "auto"

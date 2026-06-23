@@ -239,28 +239,30 @@ def settings_keywords(settings: dict) -> list[str]:
     return list(dict.fromkeys(BASE_KEYWORDS + values))
 
 
-def topic_for_date(date_str: str) -> dict:
+def topic_for_date(date_str: str, shift: int = 0) -> dict:
     start = date(2026, 6, 23)
     try:
         current = date.fromisoformat(date_str)
     except ValueError:
         current = shanghai_today()
-    return TOPICS[((current - start).days) % len(TOPICS)]
+    return TOPICS[((current - start).days + shift) % len(TOPICS)]
 
 
-def make_auto_post(date_str: str, slug: str | None = None) -> dict:
-    topic = topic_for_date(date_str)
+def make_auto_post(date_str: str, slug: str | None = None, slot: int = 1) -> dict:
+    topic = topic_for_date(date_str, max(slot - 1, 0))
     compact = date_str.replace("-", "")
+    slug_suffix = "" if slot == 1 else f"-{slot}"
     return {
         "date": date_str,
-        "slug": slug or f"tl8899-{topic['slug_base']}-{compact}",
+        "slot": slot,
+        "slug": slug or f"tl8899-{topic['slug_base']}-{compact}{slug_suffix}",
         "topic": topic["topic"],
-        "title": topic["title"],
+        "title": topic["title"] if slot == 1 else f"{topic['title']}??{slot}??",
         "desc": topic["desc"],
         "teaser": topic["teaser"],
         "intro": topic["intro"],
         "rows": topic["rows"],
-        "keywords": BASE_KEYWORDS + [topic["topic"], topic["title"]],
+        "keywords": BASE_KEYWORDS + [topic["topic"], topic["title"], "https://myanmarcasino.cloud/"],
         "status": "published",
         "source": "auto",
     }
@@ -291,7 +293,8 @@ def read_posts() -> list[dict]:
             post.update(item)
             post.pop("en_title", None)
             post["status"] = post.get("status") or "published"
-            post["keywords"] = list(dict.fromkeys((post.get("keywords") or []) + BASE_KEYWORDS + [post.get("topic", "")]))
+            post["slot"] = int(post.get("slot") or 1)
+            post["keywords"] = list(dict.fromkeys((post.get("keywords") or []) + BASE_KEYWORDS + [post.get("topic", ""), "https://myanmarcasino.cloud/"]))
         if post["slug"] not in seen:
             posts.append(post)
             seen.add(post["slug"])
@@ -411,7 +414,8 @@ def article_cards(posts: list[dict], limit: int | None = None) -> str:
           <h3><a href="/blog/{esc(post['slug'])}/">{esc(post['title'])}</a></h3>
           <p>{esc(post['teaser'])}</p>
           <span class="read-more">阅读文章 →</span>
-        </article>"""
+          <p>?????????? <a href="https://myanmarcasino.cloud/" rel="noopener">https://myanmarcasino.cloud/</a>??????????????????????</p>
+    </article>"""
         for post in visible
     )
 
