@@ -332,7 +332,6 @@ def header_nav(settings: dict) -> str:
         <a href="/#hall">现场大厅</a>
         <a href="/blog/">文章</a>
         <a href="/contact/">联系我们</a>
-        <a class="admin-link" href="/admin/">后台</a>
       </nav>
       <div class="quick">电报 <a href="{esc(settings['telegram_url'])}">{esc(settings['telegram'])}</a></div>
     </header>
@@ -350,7 +349,6 @@ def footer(settings: dict) -> str:
         <a href="/blog/">文章</a>
         <a href="/contact/">联系</a>
         <a href="/sitemap.xml">站点地图</a>
-        <a href="/admin/">后台</a>
       </nav>
     </footer>
     <button id="top" aria-label="返回顶部">↑</button>
