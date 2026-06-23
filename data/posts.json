@@ -2,24 +2,22 @@
   {
     "date": "2026-06-23",
     "slug": "tl8899-live-casino-guide-20260623",
-    "topic": "Baccarat",
+    "topic": "百家乐",
     "title": "TL8899 LIVE：百家乐庄闲流程与风险说明",
-    "en_title": "Baccarat Banker and Player Flow Guide",
-    "desc": "Chinese and English TL8899 guide to baccarat Banker, Player, Tie, commission notes, table flow and responsible play.",
+    "desc": "中文说明百家乐庄、闲、和、佣金、免佣变体、桌台规则与负责任娱乐提醒。",
     "teaser": "百家乐庄、闲、和的基础流程，适合新手先理解桌面规则与风险。",
-    "intro_cn": "百家乐在亚洲真人娱乐内容里很常见，节奏快、规则短，但每一桌仍要先看清佣金、限红、和局赔付与补牌规则。",
-    "intro_en": "Baccarat is simple to learn, but a careful player still checks table limits, commission rules, Tie payout and live-table interruptions before playing.",
+    "intro": "百家乐在亚洲真人娱乐内容里很常见，节奏快、规则短，但每一桌仍要先看清佣金、限红、和局赔付与补牌规则。不要把短期结果当成规律，也不要相信任何保证盈利的方法。",
     "rows": [
       [
-        "庄 Banker",
+        "庄",
         "常见为较低优势选项，但可能有佣金或免佣变体。"
       ],
       [
-        "闲 Player",
+        "闲",
         "流程直观，赔付通常为 1:1。"
       ],
       [
-        "和 Tie",
+        "和",
         "赔率高但波动大，新手不应把高赔率理解为更容易出现。"
       ]
     ],
@@ -35,26 +33,22 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Baccarat",
+      "轮盘",
+      "骰宝",
+      "21点",
       "TL8899 LIVE：百家乐庄闲流程与风险说明"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-22",
     "slug": "tl8899-responsible-play-budget-guide-20260622",
-    "topic": "Responsible Play",
+    "topic": "负责任娱乐",
     "title": "TL8899 LIVE：预算、时间与负责任娱乐指南",
-    "en_title": "Responsible Play Budget and Time Guide",
-    "desc": "TL8899 Chinese and English responsible-play guide with adult-only reminders, budget limits, time limits and support-minded language.",
+    "desc": "中文说明成年人信息、预算上限、时间管理、停止条件和健康提醒。",
     "teaser": "负责任娱乐的核心是预算、时间、冷静和停止能力。",
-    "intro_cn": "线上娱乐应只面向成年人，并且只应使用可承受的娱乐预算。先设定上限，比事后补救更重要。",
-    "intro_en": "Responsible play means treating gambling content as adult entertainment, setting limits first, and stopping when control feels weaker.",
+    "intro": "线上娱乐应只面向成年人，并且只应使用可承受的娱乐预算。先设定上限，比事后补救更重要。",
     "rows": [
       [
         "预算",
@@ -81,26 +75,23 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Responsible Play",
+      "轮盘",
+      "骰宝",
+      "21点",
+      "负责任娱乐",
       "TL8899 LIVE：预算、时间与负责任娱乐指南"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-21",
     "slug": "tl8899-beginner-mistakes-20260621",
-    "topic": "Beginner Mistakes",
+    "topic": "新手误区",
     "title": "TL8899 LIVE：真人娱乐新手常见错误",
-    "en_title": "Common Beginner Mistakes in Live Casino",
-    "desc": "TL8899 responsible beginner guide covering chasing losses, ignoring table rules, misunderstanding bonuses and overvaluing high payouts.",
+    "desc": "中文说明追亏、忽略规则、误解优惠、迷信高赔率等新手常见问题。",
     "teaser": "新手最常见的问题不是不会点按钮，而是忽略预算、规则和波动。",
-    "intro_cn": "真人娱乐新手常见错误包括追亏、临时加注、只看高赔率、没有阅读活动条款和把短期结果当成规律。",
-    "intro_en": "Most beginner mistakes come from pressure, not from lacking a secret strategy. Slow down and make the rules boring before money is involved.",
+    "intro": "真人娱乐新手常见错误包括追亏、临时加注、只看高赔率、没有阅读活动条款和把短期结果当成规律。",
     "rows": [
       [
         "追亏",
@@ -127,29 +118,26 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Beginner Mistakes",
+      "轮盘",
+      "骰宝",
+      "21点",
+      "新手误区",
       "TL8899 LIVE：真人娱乐新手常见错误"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-20",
     "slug": "tl8899-payout-rtp-notes-20260620",
-    "topic": "Payout RTP",
+    "topic": "赔率与RTP",
     "title": "TL8899 LIVE：赔率、RTP 与规则面板怎么看",
-    "en_title": "Payout and RTP Notes for Live Casino",
-    "desc": "Bilingual TL8899 guide explaining payout tables, RTP notes, live provider rule panels, volatility and responsible-play limits.",
+    "desc": "中文说明赔率、概率、RTP、波动、规则面板和负责任娱乐边界。",
     "teaser": "赔率不是胜率，RTP 也不是短期保证；规则面板才是每桌的依据。",
-    "intro_cn": "很多人把赔率、胜率和 RTP 混在一起。赔率只说明命中后如何赔付；RTP 是长期理论值，不保证任何单局结果。",
-    "intro_en": "Payout, probability and RTP are related but not identical. Never treat an RTP number as a short-term promise.",
+    "intro": "很多人把赔率、胜率和 RTP 混在一起。赔率只说明命中后如何赔付；RTP 是长期理论值，不保证任何单局结果。",
     "rows": [
       [
-        "赔率 Payout",
+        "赔率",
         "命中某选项后的结算比例。"
       ],
       [
@@ -157,7 +145,7 @@
         "长期理论回报，不是个人短期结果保证。"
       ],
       [
-        "波动 Volatility",
+        "波动",
         "结果上下起伏程度，高赔率通常伴随更高波动。"
       ]
     ],
@@ -173,33 +161,30 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Payout RTP",
+      "轮盘",
+      "骰宝",
+      "21点",
+      "赔率与RTP",
       "TL8899 LIVE：赔率、RTP 与规则面板怎么看"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-19",
     "slug": "tl8899-blackjack-basic-rules-20260619",
-    "topic": "Blackjack",
+    "topic": "21点",
     "title": "TL8899 LIVE：21点基础规则与常见决定",
-    "en_title": "Blackjack Basic Rules and Decisions",
-    "desc": "TL8899 blackjack guide covering hit, stand, double, split, dealer rules, payout notes and responsible budget control.",
+    "desc": "中文说明21点要牌、停牌、加倍、分牌、庄家规则和预算控制。",
     "teaser": "21点要先看庄家规则、Blackjack 赔率、分牌和加倍限制。",
-    "intro_cn": "21点比百家乐更依赖规则细节。庄家软 17、Blackjack 赔付、可否投降、分牌限制都会影响桌面体验。",
-    "intro_en": "Blackjack decisions only make sense after reading the table rules. Check dealer stands/hits soft 17, blackjack payout and split limits.",
+    "intro": "21点比百家乐更依赖规则细节。庄家软 17、Blackjack 赔付、可否投降、分牌限制都会影响桌面体验。",
     "rows": [
       [
-        "要牌 Hit",
+        "要牌",
         "继续拿牌，目标接近 21 但不能爆牌。"
       ],
       [
-        "停牌 Stand",
+        "停牌",
         "保留当前点数等待庄家行动。"
       ],
       [
@@ -219,26 +204,22 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Blackjack",
+      "轮盘",
+      "骰宝",
+      "21点",
       "TL8899 LIVE：21点基础规则与常见决定"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-18",
     "slug": "tl8899-sic-bo-dice-bets-20260618",
-    "topic": "Sic Bo",
+    "topic": "骰宝",
     "title": "TL8899 LIVE：骰宝大小、围骰与赔率说明",
-    "en_title": "Sic Bo Dice Bets and Payout Notes",
-    "desc": "TL8899 Sic Bo guide in Chinese and English covering Big Small, triples, totals, payout tables, volatility and beginner mistakes.",
+    "desc": "中文说明骰宝大小、点数、围骰、赔率表、波动与新手常见误区。",
     "teaser": "骰宝看起来热闹，实际要重点看大小、点数、围骰与赔率表。",
-    "intro_cn": "骰宝使用三颗骰子，常见选项包括大小、总点数、对子、围骰。新手容易被高赔率吸引，却忽略出现概率。",
-    "intro_en": "Sic Bo is easy to watch and easy to misunderstand. Higher payout usually means lower frequency, so read the payout table first.",
+    "intro": "骰宝使用三颗骰子，常见选项包括大小、总点数、对子、围骰。新手容易被高赔率吸引，却忽略出现概率。",
     "rows": [
       [
         "大 / 小",
@@ -249,7 +230,7 @@
         "赔率随点数出现概率变化。"
       ],
       [
-        "围骰 Triple",
+        "围骰",
         "赔率高、波动大，不适合作为追回亏损的方法。"
       ]
     ],
@@ -265,33 +246,29 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Sic Bo",
+      "轮盘",
+      "骰宝",
+      "21点",
       "TL8899 LIVE：骰宝大小、围骰与赔率说明"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-17",
     "slug": "tl8899-roulette-inside-outside-bets-20260617",
-    "topic": "Roulette",
+    "topic": "轮盘",
     "title": "TL8899 LIVE：轮盘内围外围投注与波动",
-    "en_title": "Roulette Inside and Outside Bets",
-    "desc": "Bilingual roulette guide for TL8899 readers covering inside bets, outside bets, wheel variants, payout notes and responsible play.",
+    "desc": "中文说明轮盘内围、外围、欧式、美式、赔率差异和风险控制。",
     "teaser": "轮盘要区分内围、外围、欧式、美式和赔率差异，不能只看数字漂亮。",
-    "intro_cn": "轮盘的视觉效果强，但规则核心是赔率与概率的交换。外围投注命中率较高、赔率较低；内围投注赔率高、波动也更大。",
-    "intro_en": "Roulette is a probability game. Understand the difference between European and American wheels before comparing payouts.",
+    "intro": "轮盘的视觉效果强，但规则核心是赔率与概率的交换。外围投注命中率较高、赔率较低；内围投注赔率高、波动也更大。",
     "rows": [
       [
-        "外围 Outside",
+        "外围",
         "红黑、单双、大小等，赔率较低但结果范围更宽。"
       ],
       [
-        "内围 Inside",
+        "内围",
         "直选、分注、街注等，赔率高但波动大。"
       ],
       [
@@ -311,26 +288,22 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Roulette",
+      "轮盘",
+      "骰宝",
+      "21点",
       "TL8899 LIVE：轮盘内围外围投注与波动"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-16",
     "slug": "tl8899-live-hall-table-etiquette-20260616",
-    "topic": "Live Hall",
+    "topic": "现场大厅",
     "title": "TL8899 LIVE：真人大厅流程、礼仪与联系指南",
-    "en_title": "Live Dealer Table Flow and Etiquette",
-    "desc": "TL8899 live dealer guide for lobby selection, dealer timing, table chat etiquette, contact information and responsible-play reminders.",
+    "desc": "中文说明真人大厅选桌、倒计时、桌台礼仪、联系信息和安全提醒。",
     "teaser": "进入真人大厅前，先看桌台限额、开牌节奏、规则面板和客服联系方式。",
-    "intro_cn": "真人大厅的体验不只是画面漂亮，还包括网络稳定、下注倒计时、桌台限额、规则面板和客服联系是否清楚。",
-    "intro_en": "A better live-casino session starts before the first bet: choose a table slowly, read the panel, and keep contact details handy.",
+    "intro": "真人大厅的体验不只是画面漂亮，还包括网络稳定、下注倒计时、桌台限额、规则面板和客服联系是否清楚。新手应先观察几局，再决定是否参与。",
     "rows": [
       [
         "桌台限额",
@@ -342,7 +315,7 @@
       ],
       [
         "联系渠道",
-        "Telegram @jhondoe112233 与邮箱 andrewjack0007@gmail.com 应清楚展示。"
+        "Telegram 与邮箱应清楚展示，方便内容和业务联系。"
       ]
     ],
     "keywords": [
@@ -357,29 +330,26 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Live Hall",
+      "轮盘",
+      "骰宝",
+      "21点",
+      "现场大厅",
       "TL8899 LIVE：真人大厅流程、礼仪与联系指南"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-15",
     "slug": "tl8899-niu-niu-bull-bull-hand-values-20260615",
-    "topic": "Niu Niu",
+    "topic": "牛牛",
     "title": "TL8899 LIVE：牛牛牌型、倍数与新手规则",
-    "en_title": "Niu Niu Bull Bull Hand Values",
-    "desc": "TL8899 bilingual guide to Niu Niu hand building, Bull values, multiplier tables, live dealer timing and responsible play.",
+    "desc": "中文说明牛牛五张牌组合、牛数、倍数表、开牌节奏和负责任娱乐。",
     "teaser": "牛牛要先找三张成十的组合，再判断剩余两张的牛数与倍数。",
-    "intro_cn": "牛牛的乐趣在于五张牌的组合判断：先找三张合计为十的倍数，再用剩下两张计算牛几。不同场馆倍数表可能不同。",
-    "intro_en": "Niu Niu rewards rule knowledge more than speed. Always read the multiplier table before comparing hands or raising stakes.",
+    "intro": "牛牛的乐趣在于五张牌的组合判断：先找三张合计为十的倍数，再用剩下两张计算牛几。不同场馆倍数表可能不同，进入桌台前必须先读规则。",
     "rows": [
       [
-        "无牛 No Bull",
+        "无牛",
         "找不到三张成十组合时通常为较低牌型。"
       ],
       [
@@ -387,7 +357,7 @@
         "剩余两张点数决定牛数，倍数按桌面表执行。"
       ],
       [
-        "牛牛 Bull Bull",
+        "牛牛",
         "较高牌型，但具体倍率以供应商规则为准。"
       ]
     ],
@@ -403,37 +373,33 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Niu Niu",
+      "轮盘",
+      "骰宝",
+      "21点",
       "TL8899 LIVE：牛牛牌型、倍数与新手规则"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-14",
     "slug": "tl8899-dragon-tiger-card-ranking-20260614",
-    "topic": "Dragon Tiger",
+    "topic": "龙虎",
     "title": "TL8899 LIVE：龙虎牌面大小与和局风险",
-    "en_title": "Dragon Tiger Card Ranking and Tie Risk",
-    "desc": "Bilingual TL8899 Dragon Tiger guide covering Dragon, Tiger, Tie, card ranking, table limits and safer beginner habits.",
+    "desc": "中文说明龙虎的龙、虎、和、牌面大小、桌台限制与新手风险控制。",
     "teaser": "龙虎只有两张主牌，重点是理解大小比较、和局风险和桌面限额。",
-    "intro_cn": "龙虎玩法来自简单的高牌比较：龙位与虎位各发一张牌，点数高的一方胜。规则短，但和局赔率与扣半规则要特别注意。",
-    "intro_en": "Dragon Tiger is fast because only two main cards decide the result. The key is not speed; the key is knowing the Tie rule and the table's settlement notes.",
+    "intro": "龙虎玩法来自简单的高牌比较：龙位与虎位各发一张牌，点数高的一方胜。规则短，但和局赔率与扣半规则要特别注意，不能因为开牌快就忽略预算。",
     "rows": [
       [
-        "龙 Dragon",
+        "龙",
         "押龙位牌面较高，通常按 1:1 结算。"
       ],
       [
-        "虎 Tiger",
+        "虎",
         "押虎位牌面较高，规则与龙位相同。"
       ],
       [
-        "和 Tie",
+        "和",
         "赔率看起来吸引人，但命中率低且部分规则会影响主注结算。"
       ]
     ],
@@ -449,37 +415,33 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Dragon Tiger",
+      "轮盘",
+      "骰宝",
+      "21点",
       "TL8899 LIVE：龙虎牌面大小与和局风险"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   },
   {
     "date": "2026-06-13",
     "slug": "tl8899-baccarat-banker-player-flow-20260613",
-    "topic": "Baccarat",
+    "topic": "百家乐",
     "title": "TL8899 LIVE：百家乐庄闲流程与风险说明",
-    "en_title": "Baccarat Banker and Player Flow Guide",
-    "desc": "Chinese and English TL8899 guide to baccarat Banker, Player, Tie, commission notes, table flow and responsible play.",
+    "desc": "中文说明百家乐庄、闲、和、佣金、免佣变体、桌台规则与负责任娱乐提醒。",
     "teaser": "百家乐庄、闲、和的基础流程，适合新手先理解桌面规则与风险。",
-    "intro_cn": "百家乐在亚洲真人娱乐内容里很常见，节奏快、规则短，但每一桌仍要先看清佣金、限红、和局赔付与补牌规则。",
-    "intro_en": "Baccarat is simple to learn, but a careful player still checks table limits, commission rules, Tie payout and live-table interruptions before playing.",
+    "intro": "百家乐在亚洲真人娱乐内容里很常见，节奏快、规则短，但每一桌仍要先看清佣金、限红、和局赔付与补牌规则。不要把短期结果当成规律，也不要相信任何保证盈利的方法。",
     "rows": [
       [
-        "庄 Banker",
+        "庄",
         "常见为较低优势选项，但可能有佣金或免佣变体。"
       ],
       [
-        "闲 Player",
+        "闲",
         "流程直观，赔付通常为 1:1。"
       ],
       [
-        "和 Tie",
+        "和",
         "赔率高但波动大，新手不应把高赔率理解为更容易出现。"
       ]
     ],
@@ -495,14 +457,12 @@
       "百家乐",
       "龙虎",
       "牛牛",
-      "live casino",
-      "baccarat",
-      "dragon tiger",
-      "niu niu",
-      "bull bull",
-      "Telegram @jhondoe112233",
-      "Baccarat",
+      "轮盘",
+      "骰宝",
+      "21点",
       "TL8899 LIVE：百家乐庄闲流程与风险说明"
-    ]
+    ],
+    "status": "published",
+    "source": "auto"
   }
 ]

@@ -1,0 +1,8 @@
+[
+  {
+    "username": "admin",
+    "role": "站长",
+    "note": "默认管理员",
+    "active": true
+  }
+]
