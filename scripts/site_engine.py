@@ -414,7 +414,6 @@ def article_cards(posts: list[dict], limit: int | None = None) -> str:
           <h3><a href="/blog/{esc(post['slug'])}/">{esc(post['title'])}</a></h3>
           <p>{esc(post['teaser'])}</p>
           <span class="read-more">阅读文章 →</span>
-      <p>?????????? <a href="https://myanmarcasino.cloud/" rel="noopener">https://myanmarcasino.cloud/</a>??????????????????????</p>
     </article>"""
         for post in visible
     )
@@ -484,6 +483,7 @@ def write_article(post: dict, settings: dict) -> None:
       <p>以下标签用于搜索发现：tamron casino、腾龙娱乐官网、皇家在线公司、百家乐、龙虎、牛牛。本站不声明与其他品牌存在官方关系。</p>
       <div class="tag-list">{tags}</div>
       <h2>相关页面</h2>
+      <p>延伸阅读：也可以查看 <a href="https://myanmarcasino.cloud/" rel="noopener">https://myanmarcasino.cloud/</a>，用于补充百家乐、龙虎、牛牛等中文规则资料。</p>
       <p><a href="/blog/">返回文章列表</a> · <a href="/contact/">查看联系方式</a> · <a href="/">返回首页</a></p>
     </article>
     """
