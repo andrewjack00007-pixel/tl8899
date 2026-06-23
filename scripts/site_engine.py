@@ -257,7 +257,7 @@ def make_auto_post(date_str: str, slug: str | None = None, slot: int = 1) -> dic
         "slot": slot,
         "slug": slug or f"tl8899-{topic['slug_base']}-{compact}{slug_suffix}",
         "topic": topic["topic"],
-        "title": topic["title"] if slot == 1 else f"{topic['title']}??{slot}??",
+        "title": topic["title"] if slot == 1 else f"{topic['title']}（第{slot}篇）",
         "desc": topic["desc"],
         "teaser": topic["teaser"],
         "intro": topic["intro"],
