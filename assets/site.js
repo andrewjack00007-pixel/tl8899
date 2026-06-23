@@ -1,1 +1,12 @@
-const topBtn=document.getElementById("top");window.addEventListener("scroll",()=>topBtn&&topBtn.classList.toggle("show",scrollY>500));topBtn&&topBtn.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
+const topButton = document.getElementById('top');
+const header = document.querySelector('.top');
+const menu = document.querySelector('.menu-toggle');
+window.addEventListener('scroll', () => {
+  if (!topButton) return;
+  topButton.classList.toggle('show', window.scrollY > 500);
+});
+topButton?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+menu?.addEventListener('click', () => {
+  const open = header.classList.toggle('open');
+  menu.setAttribute('aria-expanded', String(open));
+});

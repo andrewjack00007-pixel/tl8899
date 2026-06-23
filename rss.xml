@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0"><channel><title>TL8899 LIVE Blog</title><link>https://tl8899.live/blog/</link><description>Daily TL8899 LIVE guide posts.</description>
-<item><title>TL8899 LIVE 腾龙真人娱乐指南 2026-06-23</title><link>https://tl8899.live/blog/tl8899-live-casino-guide-20260623/</link><guid>https://tl8899.live/blog/tl8899-live-casino-guide-20260623/</guid><pubDate>Tue, 23 Jun 2026 09:00:00 +0800</pubDate><description>Bilingual Chinese and English TL8899 live casino guide covering baccarat, Dragon Tiger, Niu Niu, hall rules, contact and responsible play.</description></item>
-</channel></rss>
+<rss version="2.0">
+  <channel>
+    <title>TL8899 LIVE Blog</title>
+    <link>https://tl8899.live/blog/</link>
+    <description>Daily TL8899 live casino guides in Chinese and English.</description>
+    <item>
+      <title>TL8899 LIVE：百家乐庄闲流程与风险说明</title>
+      <link>https://tl8899.live/blog/tl8899-live-casino-guide-20260623/</link>
+      <guid>https://tl8899.live/blog/tl8899-live-casino-guide-20260623/</guid>
+      <pubDate>Tue, 23 Jun 2026 00:00:00 +0000</pubDate>
+      <description>Chinese and English TL8899 guide to baccarat Banker, Player, Tie, commission notes, table flow and responsible play.</description>
+    </item>
+  </channel>
+</rss>

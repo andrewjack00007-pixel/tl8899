@@ -1,19 +1,59 @@
 {
-  "site": "tl8899.live",
+  "site": "https://tl8899.live",
+  "domain": "tl8899.live",
+  "server_ip": "76.13.216.172",
   "post_count": 1,
   "latest_post": {
     "date": "2026-06-23",
     "slug": "tl8899-live-casino-guide-20260623",
-    "title": "TL8899 LIVE 腾龙真人娱乐指南 2026-06-23",
-    "desc": "Bilingual Chinese and English TL8899 live casino guide covering baccarat, Dragon Tiger, Niu Niu, hall rules, contact and responsible play.",
-    "topic": "Live Casino Guide",
-    "teaser": "中英双语：TL8899 LIVE 真人桌台、联系方式、游戏规则和理性娱乐说明。"
+    "topic": "Baccarat",
+    "title": "TL8899 LIVE：百家乐庄闲流程与风险说明",
+    "en_title": "Baccarat Banker and Player Flow Guide",
+    "desc": "Chinese and English TL8899 guide to baccarat Banker, Player, Tie, commission notes, table flow and responsible play.",
+    "teaser": "百家乐庄、闲、和的基础流程，适合新手先理解桌面规则与风险。",
+    "intro_cn": "百家乐在亚洲真人娱乐内容里很常见，节奏快、规则短，但每一桌仍要先看清佣金、限红、和局赔付与补牌规则。",
+    "intro_en": "Baccarat is simple to learn, but a careful player still checks table limits, commission rules, Tie payout and live-table interruptions before playing.",
+    "rows": [
+      [
+        "庄 Banker",
+        "常见为较低优势选项，但可能有佣金或免佣变体。"
+      ],
+      [
+        "闲 Player",
+        "流程直观，赔付通常为 1:1。"
+      ],
+      [
+        "和 Tie",
+        "赔率高但波动大，新手不应把高赔率理解为更容易出现。"
+      ]
+    ],
+    "keywords": [
+      "TL8899",
+      "tl8899.live",
+      "腾龙公司",
+      "腾龙娱乐官网",
+      "皇家在线公司",
+      "tamron casino",
+      "真人娱乐",
+      "真人娱乐场",
+      "百家乐",
+      "龙虎",
+      "牛牛",
+      "live casino",
+      "baccarat",
+      "dragon tiger",
+      "niu niu",
+      "bull bull",
+      "Telegram @jhondoe112233",
+      "Baccarat",
+      "TL8899 LIVE：百家乐庄闲流程与风险说明"
+    ]
   },
-  "cron": "25 1 * * * UTC",
+  "cron": "25 1 * * * UTC / 09:25 Asia/Shanghai",
   "contact": {
     "telegram": "@jhondoe112233",
+    "telegram_url": "https://t.me/jhondoe112233",
     "email": "andrewjack0007@gmail.com"
   },
-  "dns_target": "76.13.216.172",
-  "updated_at": "2026-06-23T07:32:04.430780+00:00"
+  "generated_at": "2026-06-23T07:45:05.600174+00:00"
 }
