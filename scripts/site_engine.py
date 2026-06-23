@@ -270,7 +270,7 @@ def make_auto_post(date_str: str, slug: str | None = None, slot: int = 1) -> dic
 
 def bad_text(value: object) -> bool:
     text = str(value)
-    return "\ufffd" in text or "????" in text or "����" in text
+    return "\ufffd" in text or "??" in text or "\ufffd" in text
 
 
 def read_posts() -> list[dict]:
@@ -566,3 +566,7 @@ def submit_indexnow(urls: list[str]) -> int | None:
             return response.status
     except urllib.error.HTTPError as error:
         return error.code
+
+
+if __name__ == "__main__":
+    rebuild()
