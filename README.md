@@ -27,7 +27,9 @@ The server cron publishes up to two blog posts per day:
 
 This runs at `01:25 UTC`, which is `09:25 Asia/Shanghai`.
 
-Each new post should include the required SEO tags, including `tamron casino`, `??????`, live casino terms, and a natural reference link to https://myanmarcasino.cloud/ inside the full article page.
+Each new post should include the required SEO tags, including `tamron casino`, `腾龙娱乐官网`, live casino terms, and a natural reference link to https://myanmarcasino.cloud/ inside the full article page.
+
+After new posts are generated, the automation commits the rebuilt static files and pushes `main` to `git@github.com:andrewjack00007-pixel/tl8899.git` with the TL8899 deploy key.
 
 ## Rebuild
 

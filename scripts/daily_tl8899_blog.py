@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import argparse
 
-from site_engine import SITE, git_commit, make_auto_post, read_posts, rebuild, shanghai_today, submit_indexnow, verify_public
+from site_engine import SITE, git_commit, git_push, make_auto_post, read_posts, rebuild, shanghai_today, submit_indexnow, verify_public
 
 
 DEFAULT_DAILY_COUNT = 2
@@ -19,7 +19,7 @@ def main() -> int:
     parser.add_argument("--date", default=shanghai_today().isoformat())
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--force", action="store_true")
-    parser.add_argument("--count", type=int, default=DEFAULT_DAILY_COUNT, help="????????????? 2 ??")
+    parser.add_argument("--count", type=int, default=DEFAULT_DAILY_COUNT, help="Number of posts to publish; default is 2.")
     args = parser.parse_args()
 
     target_count = max(1, args.count)
@@ -30,7 +30,7 @@ def main() -> int:
         rebuild(posts)
         for post in existing[:target_count]:
             verify_public(post["slug"])
-        print(f"???{args.date} ?? {len(existing)} ?????? {target_count} ??")
+        print(f"{args.date} already has {len(existing)} posts; target is {target_count}.")
         return 0
 
     if args.force:
@@ -46,9 +46,9 @@ def main() -> int:
 
     if args.dry_run:
         if not new_posts:
-            print(f"???{args.date} ???? {target_count} ????")
+            print(f"{args.date} already satisfies the {target_count}-post target.")
         for post in new_posts:
-            print(f"?????? {post['slug']} - {post['title']}")
+            print(f"Would publish {post['slug']} - {post['title']}")
         return 0
 
     posts = new_posts + posts
@@ -58,14 +58,17 @@ def main() -> int:
         verify_public(post["slug"])
 
     if new_posts:
-        git_commit(f"?? TL8899 ?????? {args.date}?{len(new_posts)}??")
+        committed = git_commit(f"Publish TL8899 daily posts for {args.date} ({len(new_posts)} posts)")
+        pushed = git_push() if committed else False
         urls = [f"{SITE}/blog/{post['slug']}/" for post in new_posts] + [f"{SITE}/", f"{SITE}/blog/", f"{SITE}/sitemap.xml", f"{SITE}/rss.xml"]
         code = submit_indexnow(urls)
         for post in new_posts:
-            print(f"????{SITE}/blog/{post['slug']}/")
+            print(f"Published {SITE}/blog/{post['slug']}/")
+        print(f"Git commit: {'created' if committed else 'skipped'}")
+        print(f"GitHub push: {'ok' if pushed else 'skipped or failed'}")
         print(f"IndexNow: {code}")
     else:
-        print(f"??????????{args.date}")
+        print(f"No new posts needed for {args.date}.")
     return 0
 
 
