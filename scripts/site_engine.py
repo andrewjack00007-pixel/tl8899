@@ -27,7 +27,9 @@ DOMAIN = "tl8899.live"
 SERVER_IP = "76.13.216.172"
 INDEXNOW_KEY = "f64254d0a708461e8b1f2fce8eee9c30"
 INDEXNOW_KEY_LOCATION = f"{SITE}/{INDEXNOW_KEY}.txt"
-ASSET_VERSION = "2026062508"
+ASSET_VERSION = "2026062510"
+DEALER_IMAGE_WEBP = f"/assets/casino-dealer-live.webp?v={ASSET_VERSION}"
+DEALER_IMAGE_JPG = f"/assets/casino-dealer-live.jpg?v={ASSET_VERSION}"
 
 DEFAULT_SETTINGS = {
     "brand_name": "腾龙公司",
@@ -443,8 +445,10 @@ def layout(settings: dict, title: str, description: str, canonical_path: str, bo
   <meta property="og:description" content="{esc(description)}">
   <meta property="og:url" content="{esc(canonical)}">
   <meta property="og:type" content="{esc(page_type)}">
-  <meta property="og:image" content="{SITE}/assets/tl8899-og.svg">
+  <meta property="og:image" content="{SITE}/assets/casino-dealer-live.jpg">
+  <meta property="og:image:alt" content="{esc(settings['brand_subtitle'])} 真人荷官资讯图片">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="{SITE}/assets/casino-dealer-live.jpg">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/assets/site.css?v={ASSET_VERSION}" as="style">
   <link rel="stylesheet" href="/assets/site.css?v={ASSET_VERSION}">
@@ -464,10 +468,15 @@ def article_cards(posts: list[dict], limit: int | None = None) -> str:
     visible = posts[:limit] if limit else posts
     return "\n".join(
         f"""<article class="article-card">
-          <time datetime="{esc(post['date'])}">{esc(post['date'])}</time>
-          <h3><a href="/blog/{esc(post['slug'])}/">{esc(post['title'])}</a></h3>
-          <p>{esc(post['teaser'])}</p>
-          <span class="read-more">阅读文章 →</span>
+          <a class="article-card-media" href="/blog/{esc(post['slug'])}/" aria-label="阅读 {esc(post['title'])}">
+            <picture><source srcset="{DEALER_IMAGE_WEBP}" type="image/webp"><img src="{DEALER_IMAGE_JPG}" alt="TL8899 LIVE 真人荷官与百家乐桌台" width="1280" height="720" loading="lazy" decoding="async"></picture>
+          </a>
+          <div class="article-card-body">
+            <time datetime="{esc(post['date'])}">{esc(post['date'])}</time>
+            <h3><a href="/blog/{esc(post['slug'])}/">{esc(post['title'])}</a></h3>
+            <p>{esc(post['teaser'])}</p>
+            <span class="read-more">阅读文章 →</span>
+          </div>
     </article>"""
         for post in visible
     )
@@ -538,6 +547,12 @@ footer{grid-template-columns:1fr auto 1.2fr auto;min-height:88px;padding:18px ma
 @media(min-width:901px){.brand-logo{width:74px;height:74px}.footer-logo{width:52px;height:56px}.brand{gap:14px}}
 @media(max-width:900px){.brand-logo{width:54px;height:54px}.footer-logo{width:42px;height:44px}.brand{gap:10px}}
 """
+    css += """
+.panel-media.dealer{display:block;position:relative;overflow:hidden;background:#0d1118;border:1px solid #d7a548;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}.panel-media.dealer img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 28%}.panel-media.dealer:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 46%,rgba(0,0,0,.55));z-index:1}.panel-media.dealer:after{content:"LIVE DEALER";position:absolute;left:12px;bottom:10px;z-index:2;padding:4px 9px;border-radius:999px;background:rgba(10,14,21,.78);border:1px solid rgba(245,196,83,.55);color:#f8cf69;font-size:11px;font-weight:950;letter-spacing:.12em}.panel-media.dealer span{display:none}
+.article-card{padding:0}.article-card:before{display:none}.article-card-media{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;background:#0d1118}.article-card-media picture,.article-card-media img{display:block;width:100%;height:100%}.article-card-media img{object-fit:cover;object-position:center 28%;transition:transform .28s ease}.article-card:hover .article-card-media img{transform:scale(1.04)}.article-card-body{display:flex;flex:1;flex-direction:column;padding:18px 22px 22px}.article-card-body p{margin-bottom:16px}.article-cover{margin:24px 0 28px}.article-cover picture{display:block;overflow:hidden;border-radius:24px;border:1px solid rgba(202,145,36,.28);box-shadow:0 20px 58px rgba(12,18,28,.16);background:#0d1118}.article-cover img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center 28%}.article-cover figcaption{margin-top:10px;color:#7a8390;font-size:13px;text-align:center}
+@media(min-width:901px){.article-card-body{padding:20px 24px 24px}.article-cover{margin-top:30px}.article-cover picture{border-radius:30px}.panel-media.dealer:after{font-size:12px}}
+@media(max-width:900px){.article-card-body{padding:16px 18px 20px}.article-cover picture{border-radius:18px}.article-cover figcaption{text-align:left}}
+"""
     js = """
 const topButton=document.getElementById('top');const header=document.querySelector('.top');const menu=document.querySelector('.menu-toggle');window.addEventListener('scroll',()=>{if(!topButton)return;topButton.classList.toggle('show',window.scrollY>500)});topButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));menu?.addEventListener('click',()=>{const open=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
 """
@@ -579,7 +594,7 @@ def write_home(posts: list[dict], settings: dict) -> None:
     <section class="home-cards">
       <article class="info-panel" id="about"><h2>关于我们</h2><div class="panel-media lounge"><span>TL</span></div><p>腾龙公司 {esc(settings['brand_subtitle'])} LIVE 致力于为全球用户提供高质量的真人娱乐资讯与专业游戏指南。我们的内容团队由资深玩家与行业专家组成，确保信息的权威性与实用性。</p><a class="outline-link" href="/#about">了解更多</a></article>
       <article class="info-panel" id="services"><h2>业务项目</h2><ul class="service-list"><li><b>♣</b><span>真人娱乐资讯指南<small>提供详细的游戏规则与策略</small></span></li><li><b>技</b><span>游戏技巧与策略<small>专业玩家分享实战经验</small></span></li><li><b>公</b><span>行业动态与公告<small>最新行业资讯与平台公告</small></span></li><li><b>搜</b><span>搜索优化与技术支持<small>快速、稳定、安全的静态站点</small></span></li></ul><a class="text-link" href="/blog/">查看全部项目 →</a></article>
-      <article class="info-panel live-panel" id="hall"><h2>现场大厅</h2><div class="panel-media dealer"><span>LIVE</span></div><p>进入 TL8899 LIVE 现场大厅，体验真实的荷官互动与沉浸式游戏氛围，支持多种热门游戏。</p><a class="gold-link" href="/contact/">立即进入</a></article>
+      <article class="info-panel live-panel" id="hall"><h2>现场大厅</h2><picture class="panel-media dealer"><source srcset="{DEALER_IMAGE_WEBP}" type="image/webp"><img src="{DEALER_IMAGE_JPG}" alt="TL8899 LIVE 真人荷官与现场百家乐桌台" width="1280" height="720" loading="lazy" decoding="async"><span>LIVE</span></picture><p>进入 TL8899 LIVE 现场大厅，体验真实的荷官互动与沉浸式游戏氛围，支持多种热门游戏。</p><a class="gold-link" href="/contact/">立即进入</a></article>
       <article class="info-panel latest-panel"><h2>最新文章</h2>{latest_home_list(pub, 4)}<a class="text-link" href="/blog/">查看全部文章 →</a></article>
       <article class="info-panel contact-panel"><h2>联系方式</h2><p><b>Telegram</b><span>{esc(settings['telegram'])}</span></p><p><b>电话</b><span>{esc(settings['phone'])}</span></p><p><b>邮箱</b><span>{esc(settings['email'])}</span></p><p><b>工作时间</b><span>09:00 - 18:00（GMT+8）</span></p><a class="outline-link wide" href="/contact/">发送消息</a></article>
     </section>
@@ -726,6 +741,10 @@ def write_article(post: dict, settings: dict) -> None:
       <p class="meta-line">{esc(post['date'])} · {esc(post.get('topic','真人娱乐'))} · {esc(settings['brand_name'])}</p>
       <h1>{esc(post['title'])}</h1>
       <p>{esc(post['desc'])}</p>
+      <figure class="article-cover">
+        <picture><source srcset="{DEALER_IMAGE_WEBP}" type="image/webp"><img src="{DEALER_IMAGE_JPG}" alt="{esc(post['title'])} 真人荷官桌台配图" width="1280" height="720" loading="eager" decoding="async"></picture>
+        <figcaption>TL8899 LIVE 真人荷官资讯配图，仅用于成年人游戏规则与风险提示内容。</figcaption>
+      </figure>
       <div class="note">负责任娱乐提示：本文仅供成年人信息参考，不承诺盈利，不提供保证结果的下注方法，也不建议追亏或冲动加注。</div>
       <h2>玩法重点</h2>
       <p>{esc(post.get('intro','进入任何真人桌台前，请先阅读规则面板、赔率表、桌台限额和活动条款。'))}</p>
@@ -742,7 +761,7 @@ def write_article(post: dict, settings: dict) -> None:
       <p><a href="/blog/">返回文章列表</a> · <a href="/contact/">查看联系方式</a> · <a href="/">返回首页</a></p>
     </article>
     """
-    article_schema = {"@context": "https://schema.org", "@type": "Article", "headline": post["title"], "description": post["desc"], "datePublished": post["date"], "dateModified": post["date"], "author": {"@type": "Organization", "name": settings["brand_subtitle"]}, "publisher": {"@type": "Organization", "name": settings["brand_subtitle"]}, "mainEntityOfPage": f"{SITE}/blog/{post['slug']}/", "keywords": post.get("keywords") or settings_keywords(settings)}
+    article_schema = {"@context": "https://schema.org", "@type": "Article", "headline": post["title"], "description": post["desc"], "image": f"{SITE}/assets/casino-dealer-live.jpg", "datePublished": post["date"], "dateModified": post["date"], "author": {"@type": "Organization", "name": settings["brand_subtitle"]}, "publisher": {"@type": "Organization", "name": settings["brand_subtitle"]}, "mainEntityOfPage": f"{SITE}/blog/{post['slug']}/", "keywords": post.get("keywords") or settings_keywords(settings)}
     path = ROOT / "blog" / post["slug"]
     path.mkdir(parents=True, exist_ok=True)
     (path / "index.html").write_text(layout(settings, post["title"], post["desc"], f"/blog/{post['slug']}/", body, page_type="article", extra_keywords=post.get("keywords") or [], structured=article_schema), encoding="utf-8")
