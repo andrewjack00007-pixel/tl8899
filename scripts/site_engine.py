@@ -21,7 +21,7 @@ except Exception:
     ZoneInfo = None
 
 
-ROOT = Path("/var/www/tl8899")
+ROOT = Path(os.environ.get("TL8899_ROOT", "/var/www/tl8899"))
 SITE = "https://tl8899.live"
 DOMAIN = "tl8899.live"
 SERVER_IP = "76.13.216.172"
@@ -196,7 +196,10 @@ TOPICS = [
 
 def shanghai_today() -> date:
     if ZoneInfo:
-        return datetime.now(ZoneInfo("Asia/Shanghai")).date()
+        try:
+            return datetime.now(ZoneInfo("Asia/Shanghai")).date()
+        except Exception:
+            pass
     return datetime.now(timezone(timedelta(hours=8))).date()
 
 
@@ -211,7 +214,16 @@ def slugify(value: str, fallback: str) -> str:
 
 
 def ensure_dirs() -> None:
-    for path in [ROOT, ROOT / "assets", ROOT / "blog", ROOT / "contact", ROOT / "data", ROOT / "scripts"]:
+    for path in [
+        ROOT,
+        ROOT / "assets",
+        ROOT / "blog",
+        ROOT / "contact",
+        ROOT / "privacy-policy",
+        ROOT / "terms-of-service",
+        ROOT / "data",
+        ROOT / "scripts",
+    ]:
         path.mkdir(parents=True, exist_ok=True)
 
 
@@ -388,6 +400,8 @@ def footer(settings: dict) -> str:
         <a href="/#hall">现场大厅</a>
         <a href="/blog/">文章</a>
         <a href="/contact/">联系我们</a>
+        <a href="/privacy-policy/">隐私政策</a>
+        <a href="/terms-of-service/">服务条款</a>
       </nav>
       <p class="footer-note">© 2026 {esc(settings['brand_name'])} {esc(settings['brand_subtitle'])}。保留所有权利。本站为资讯与指南站点，不提供任何形式的赌博服务。</p>
       <span class="age-mark">18+</span>
@@ -566,6 +580,125 @@ def write_contact(settings: dict) -> None:
     (ROOT / "contact" / "index.html").write_text(layout(settings, "联系我们 | TL8899", f"通过电报 {settings['telegram']} 或邮箱 {settings['email']} 联系 TL8899。", "/contact/", body, extra_keywords=["联系", settings["email"], settings["telegram"]]), encoding="utf-8")
 
 
+def write_privacy_policy(settings: dict) -> None:
+    body = f"""
+    <article class="article">
+      <p class="meta-line">TL8899 LIVE · Privacy Policy · 隐私政策</p>
+      <h1>隐私政策 Privacy Policy</h1>
+      <p>最后更新：{esc(shanghai_today().isoformat())}</p>
+      <div class="note">本站为成年人资讯与指南站点，不提供任何形式的赌博服务，也不承诺盈利结果。</div>
+
+      <h2>我们收集的信息</h2>
+      <p>当您浏览 https://tl8899.live/ 时，服务器可能会记录基本技术信息，例如访问时间、页面路径、浏览器类型和安全日志。这些信息用于维护网站安全、排查错误和改进页面体验。</p>
+      <p>如果您通过电报或邮箱联系我们，我们会收到您主动提供的联系信息和消息内容。请不要发送账号密码、付款资料、身份证件或其他不必要的敏感资料。</p>
+
+      <h2>Google OAuth 与 Blogger API</h2>
+      <p>本项目可能使用 Google OAuth 连接 Blogger API，用于在已授权的 Blogger 博客中创建或管理文章。授权时，本应用只请求执行 Blogger 发布任务所需的权限。</p>
+      <p>Google OAuth token 仅用于您授权的 Blogger 自动发布流程，不会出售、出租或用于广告画像。若您取消授权，自动发布功能将无法继续访问对应的 Google/Blogger 资源。</p>
+
+      <h2>信息使用方式</h2>
+      <ul>
+        <li>维护网站与自动发布工具的正常运行。</li>
+        <li>回复用户主动发送的联系请求。</li>
+        <li>保护网站、服务器和自动化任务的安全。</li>
+        <li>改进成人资讯内容、导航和搜索可见性。</li>
+      </ul>
+
+      <h2>第三方服务与链接</h2>
+      <p>网站可能链接到 Telegram、Google Blogger、Google OAuth 或其他外部页面。第三方网站有自己的隐私政策和服务条款，本站无法控制其数据处理方式。</p>
+
+      <h2>数据保留与安全</h2>
+      <p>我们只在完成上述用途所需的时间内保留相关信息，并采取合理措施保护本地凭据、服务器配置和自动化 token。互联网传输无法保证绝对安全，请避免发送不必要的敏感资料。</p>
+
+      <h2>联系我们</h2>
+      <p>如需询问隐私相关问题，请通过 <a href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a> 或 <a href="{esc(settings['telegram_url'])}">Telegram {esc(settings['telegram'])}</a> 联系。</p>
+
+      <h2>English Summary</h2>
+      <p>TL8899 LIVE is an adult informational website. We use basic technical logs to operate and secure the site. If Google OAuth is used, access is limited to the authorized Blogger publishing workflow and is not sold or used for advertising profiling. Contact us at {esc(settings['email'])} for privacy questions.</p>
+    </article>
+    """
+    structured = {
+        "@context": "https://schema.org",
+        "@type": "PrivacyPolicy",
+        "name": "TL8899 LIVE Privacy Policy",
+        "url": f"{SITE}/privacy-policy/",
+        "dateModified": shanghai_today().isoformat(),
+        "publisher": {"@type": "Organization", "name": settings["brand_subtitle"]},
+    }
+    (ROOT / "privacy-policy" / "index.html").write_text(
+        layout(
+            settings,
+            "隐私政策 | TL8899 LIVE",
+            "TL8899 LIVE 隐私政策，说明网站日志、联系信息、Google OAuth 与 Blogger API 自动发布数据的使用方式。",
+            "/privacy-policy/",
+            body,
+            extra_keywords=["隐私政策", "Privacy Policy", "Google OAuth", "Blogger API"],
+            structured=structured,
+        ),
+        encoding="utf-8",
+    )
+
+
+def write_terms_of_service(settings: dict) -> None:
+    body = f"""
+    <article class="article">
+      <p class="meta-line">TL8899 LIVE · Terms of Service · 服务条款</p>
+      <h1>服务条款 Terms of Service</h1>
+      <p>最后更新：{esc(shanghai_today().isoformat())}</p>
+      <div class="note">使用本站即表示您理解：本站只提供成年人信息参考，不提供赌博服务，不处理投注，不保证任何收益。</div>
+
+      <h2>网站用途</h2>
+      <p>https://tl8899.live/ 是一个中文资讯与指南网站，内容包括真人娱乐规则、风险提示、文章更新、联系方式和负责任娱乐说明。本站内容不构成法律、财务、投资或赌博建议。</p>
+
+      <h2>成年人使用</h2>
+      <p>本站内容仅面向达到当地法定年龄的成年人。未成年人、所在地区不允许相关内容的用户，或无法理性控制预算和时间的用户，不应使用本站内容作为参与依据。</p>
+
+      <h2>负责任娱乐</h2>
+      <ul>
+        <li>请提前设定预算和时间限制。</li>
+        <li>不要借钱、追亏或相信保证盈利的方法。</li>
+        <li>如果娱乐影响睡眠、工作、健康或家庭，应立即停止并寻求帮助。</li>
+        <li>所有桌台规则、赔率、活动和限制以对应平台实际说明为准。</li>
+      </ul>
+
+      <h2>Google OAuth 与自动发布</h2>
+      <p>如您授权本项目使用 Google OAuth，本项目只会将相关权限用于 Blogger 文章发布或管理流程。您可以随时在 Google 账号安全设置中撤销授权。</p>
+
+      <h2>知识产权与链接</h2>
+      <p>本站页面、排版和原创文字用于 TL8899 LIVE 资讯展示。外部品牌、平台名称或第三方链接仅用于说明和导航，不表示本站与其存在官方合作或背书关系。</p>
+
+      <h2>免责声明</h2>
+      <p>本站尽力保持内容清晰、及时和准确，但不保证所有信息适用于每个地区、平台或桌台。使用者应自行确认当地规定、平台条款和个人风险承受能力。</p>
+
+      <h2>联系我们</h2>
+      <p>如需联系，请使用 <a href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a> 或 <a href="{esc(settings['telegram_url'])}">Telegram {esc(settings['telegram'])}</a>。</p>
+
+      <h2>English Summary</h2>
+      <p>TL8899 LIVE provides adult informational content only. We do not operate gambling services, process bets, promise winnings, or provide legal or financial advice. Google OAuth access, when granted, is used only for the authorized Blogger publishing workflow.</p>
+    </article>
+    """
+    structured = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "TL8899 LIVE Terms of Service",
+        "url": f"{SITE}/terms-of-service/",
+        "dateModified": shanghai_today().isoformat(),
+        "publisher": {"@type": "Organization", "name": settings["brand_subtitle"]},
+    }
+    (ROOT / "terms-of-service" / "index.html").write_text(
+        layout(
+            settings,
+            "服务条款 | TL8899 LIVE",
+            "TL8899 LIVE 服务条款，说明成年人信息参考、负责任娱乐、Google OAuth 自动发布和免责声明。",
+            "/terms-of-service/",
+            body,
+            extra_keywords=["服务条款", "Terms of Service", "Google OAuth", "Blogger API"],
+            structured=structured,
+        ),
+        encoding="utf-8",
+    )
+
+
 def write_article(post: dict, settings: dict) -> None:
     rows = "\n".join(f"<tr><td>{esc(name)}</td><td>{esc(note)}</td></tr>" for name, note in (post.get("rows") or []))
     tags = "".join(f"<span>{esc(tag)}</span>" for tag in visible_article_keywords(post))
@@ -605,7 +738,13 @@ def cleanup_post_dirs(posts: list[dict]) -> None:
 def write_discovery(posts: list[dict], settings: dict) -> None:
     pub = published_posts(posts)
     today = shanghai_today().isoformat()
-    urls = [("/", "daily", "1.0"), ("/blog/", "daily", "0.9"), ("/contact/", "monthly", "0.7")] + [(f"/blog/{post['slug']}/", "weekly", "0.8") for post in pub]
+    urls = [
+        ("/", "daily", "1.0"),
+        ("/blog/", "daily", "0.9"),
+        ("/contact/", "monthly", "0.7"),
+        ("/privacy-policy/", "monthly", "0.6"),
+        ("/terms-of-service/", "monthly", "0.6"),
+    ] + [(f"/blog/{post['slug']}/", "weekly", "0.8") for post in pub]
     sitemap_items = "\n".join(f"  <url>\n    <loc>{SITE}{path}</loc>\n    <lastmod>{today if path in ['/', '/blog/'] else today}</lastmod>\n    <changefreq>{freq}</changefreq>\n    <priority>{priority}</priority>\n  </url>" for path, freq, priority in urls)
     (ROOT / "sitemap.xml").write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{sitemap_items}\n</urlset>\n', encoding="utf-8")
     rss_items = "\n".join(f"    <item>\n      <title>{esc(post['title'])}</title>\n      <link>{SITE}/blog/{esc(post['slug'])}/</link>\n      <guid>{SITE}/blog/{esc(post['slug'])}/</guid>\n      <pubDate>{email.utils.format_datetime(datetime.fromisoformat(post['date']).replace(tzinfo=timezone.utc))}</pubDate>\n      <description>{esc(post['desc'])}</description>\n    </item>" for post in pub[:20])
@@ -623,6 +762,8 @@ def rebuild(posts: list[dict] | None = None, settings: dict | None = None) -> tu
     write_home(posts, settings)
     write_blog_index(posts, settings)
     write_contact(settings)
+    write_privacy_policy(settings)
+    write_terms_of_service(settings)
     cleanup_post_dirs(posts)
     for post in published_posts(posts):
         write_article(post, settings)
@@ -631,7 +772,7 @@ def rebuild(posts: list[dict] | None = None, settings: dict | None = None) -> tu
 
 
 def verify_public(slug: str | None = None) -> None:
-    paths = ["/", "/blog/", "/sitemap.xml", "/rss.xml"]
+    paths = ["/", "/blog/", "/privacy-policy/", "/terms-of-service/", "/sitemap.xml", "/rss.xml"]
     if slug:
         paths.insert(1, f"/blog/{slug}/")
     for path in paths:
