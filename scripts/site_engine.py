@@ -38,6 +38,7 @@ DEFAULT_SETTINGS = {
     "hero_description": "参考中文企业官网的清晰结构：品牌介绍、业务项目、现场大厅、新闻文章、联系信息和后台管理。所有公开内容以中文为主，并每天自动更新搜索文章。",
     "telegram": "@jhondoe112233",
     "telegram_url": "https://t.me/jhondoe112233",
+    "phone": "15393938358",
     "email": "andrewjack0007@gmail.com",
     "footer_note": "本站为独立中文资讯站，仅提供成年人信息参考，不承诺盈利，不提供保证结果的下注方法。",
     "seo_keywords": "TL8899, tl8899.live, 腾龙公司, 腾龙娱乐官网, 皇家在线公司, tamron casino, 真人娱乐, 真人娱乐场, 百家乐, 龙虎, 牛牛, 轮盘, 骰宝, 21点",
@@ -110,7 +111,7 @@ TOPICS = [
         "rows": [
             ("桌台限额", "确认最低、最高投注与单局限制。"),
             ("倒计时", "真人桌有固定下注窗口，延迟时不要强行追单。"),
-            ("联系渠道", "Telegram 与邮箱应清楚展示，方便内容和业务联系。"),
+            ("联系渠道", "Telegram、电话与邮箱应清楚展示，方便内容和业务联系。"),
         ],
     },
     {
@@ -378,7 +379,7 @@ def header_nav(settings: dict) -> str:
         </nav>
         <div class="header-actions">
           <a class="contact-chip telegram" href="{esc(settings['telegram_url'])}">Telegram {esc(settings['telegram'])}</a>
-          <a class="contact-chip mail" href="mailto:{esc(settings['email'])}">电邮 {esc(settings['telegram'])}</a>
+          <a class="contact-chip mail" href="tel:{esc(settings['phone'])}">电话 {esc(settings['phone'])}</a>
         </div>
       </div>
     </header>
@@ -420,8 +421,9 @@ def layout(settings: dict, title: str, description: str, canonical_path: str, bo
         "alternateName": ["腾龙公司", "腾龙娱乐官网", "皇家在线公司", "tamron casino"],
         "url": SITE,
         "email": settings["email"],
+        "telephone": settings["phone"],
         "sameAs": [settings["telegram_url"]],
-        "contactPoint": {"@type": "ContactPoint", "contactType": "内容与业务联系", "email": settings["email"], "url": settings["telegram_url"]},
+        "contactPoint": {"@type": "ContactPoint", "contactType": "内容与业务联系", "email": settings["email"], "telephone": settings["phone"], "url": settings["telegram_url"]},
     }
     scripts = [org]
     if structured:
@@ -523,7 +525,7 @@ footer{position:relative;display:grid;grid-template-columns:1fr auto 1.1fr auto;
 const topButton=document.getElementById('top');const header=document.querySelector('.top');const menu=document.querySelector('.menu-toggle');window.addEventListener('scroll',()=>{if(!topButton)return;topButton.classList.toggle('show',window.scrollY>500)});topButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));menu?.addEventListener('click',()=>{const open=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
 """
     favicon = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><rect width="96" height="96" rx="22" fill="#101621"/><circle cx="48" cy="48" r="33" fill="#d98b13"/><circle cx="48" cy="48" r="25" fill="#111827"/><text x="48" y="59" text-anchor="middle" font-family="Arial" font-size="30" font-weight="900" fill="#f3c351">TL</text></svg>"""
-    og = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#075db3"/></linearGradient></defs><rect width="1200" height="630" fill="url(#g)"/><circle cx="865" cy="315" r="180" fill="#f3c351" opacity=".18"/><text x="86" y="220" font-family="Microsoft YaHei, Arial" font-size="74" font-weight="900" fill="#f3c351">{esc(settings['brand_name'])}</text><text x="86" y="305" font-family="Arial" font-size="58" font-weight="900" fill="#fff">{esc(settings['brand_subtitle'])}</text><text x="86" y="388" font-family="Microsoft YaHei, Arial" font-size="34" fill="#dfe8f4">中文资讯 · 每日文章 · 联系方式</text><text x="86" y="455" font-family="Arial" font-size="30" fill="#f3c351">Telegram {esc(settings['telegram'])}</text></svg>"""
+    og = f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#07111f"/><stop offset="1" stop-color="#075db3"/></linearGradient></defs><rect width="1200" height="630" fill="url(#g)"/><circle cx="865" cy="315" r="180" fill="#f3c351" opacity=".18"/><text x="86" y="220" font-family="Microsoft YaHei, Arial" font-size="74" font-weight="900" fill="#f3c351">{esc(settings['brand_name'])}</text><text x="86" y="305" font-family="Arial" font-size="58" font-weight="900" fill="#fff">{esc(settings['brand_subtitle'])}</text><text x="86" y="388" font-family="Microsoft YaHei, Arial" font-size="34" fill="#dfe8f4">中文资讯 · 每日文章 · 联系方式</text><text x="86" y="455" font-family="Arial" font-size="30" fill="#f3c351">Telegram {esc(settings['telegram'])} · Phone {esc(settings['phone'])}</text></svg>"""
     (ROOT / "assets" / "site.css").write_text(css.strip() + "\n", encoding="utf-8")
     (ROOT / "assets" / "site.js").write_text(js.strip() + "\n", encoding="utf-8")
     (ROOT / "assets" / "favicon.svg").write_text(favicon, encoding="utf-8")
@@ -562,7 +564,7 @@ def write_home(posts: list[dict], settings: dict) -> None:
       <article class="info-panel" id="services"><h2>业务项目</h2><ul class="service-list"><li><b>♣</b><span>真人娱乐资讯指南<small>提供详细的游戏规则与策略</small></span></li><li><b>技</b><span>游戏技巧与策略<small>专业玩家分享实战经验</small></span></li><li><b>公</b><span>行业动态与公告<small>最新行业资讯与平台公告</small></span></li><li><b>搜</b><span>搜索优化与技术支持<small>快速、稳定、安全的静态站点</small></span></li></ul><a class="text-link" href="/blog/">查看全部项目 →</a></article>
       <article class="info-panel live-panel" id="hall"><h2>现场大厅</h2><div class="panel-media dealer"><span>LIVE</span></div><p>进入 TL8899 LIVE 现场大厅，体验真实的荷官互动与沉浸式游戏氛围，支持多种热门游戏。</p><a class="gold-link" href="/contact/">立即进入</a></article>
       <article class="info-panel latest-panel"><h2>最新文章</h2>{latest_home_list(pub, 4)}<a class="text-link" href="/blog/">查看全部文章 →</a></article>
-      <article class="info-panel contact-panel"><h2>联系方式</h2><p><b>Telegram</b><span>{esc(settings['telegram'])}</span></p><p><b>邮箱</b><span>{esc(settings['email'])}</span></p><p><b>电报</b><span>{esc(settings['telegram'])}</span></p><p><b>工作时间</b><span>09:00 - 18:00（GMT+8）</span></p><a class="outline-link wide" href="/contact/">发送消息</a></article>
+      <article class="info-panel contact-panel"><h2>联系方式</h2><p><b>Telegram</b><span>{esc(settings['telegram'])}</span></p><p><b>电话</b><span>{esc(settings['phone'])}</span></p><p><b>邮箱</b><span>{esc(settings['email'])}</span></p><p><b>工作时间</b><span>09:00 - 18:00（GMT+8）</span></p><a class="outline-link wide" href="/contact/">发送消息</a></article>
     </section>
     """
     structured = {"@context": "https://schema.org", "@type": "WebSite", "name": settings["brand_subtitle"], "url": SITE}
@@ -576,8 +578,8 @@ def write_blog_index(posts: list[dict], settings: dict) -> None:
 
 
 def write_contact(settings: dict) -> None:
-    body = f"""<section class="section white"><div class="head"><p class="eyebrow">联系我们</p><h1>联系方式</h1><p>内容更新、搜索修正或业务联系，请使用电报或邮箱。请不要发送账号密码、付款资料或身份证件。</p></div><div class="contact-box"><a class="contact-pill" href="{esc(settings['telegram_url'])}">电报 {esc(settings['telegram'])}</a><a class="contact-pill gold" href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a></div><div class="note" style="margin-top:24px">本站内容仅供成年人信息参考。请提前设定预算和时间，若影响睡眠、工作、健康或家庭，应立即停止。</div></section>"""
-    (ROOT / "contact" / "index.html").write_text(layout(settings, "联系我们 | TL8899", f"通过电报 {settings['telegram']} 或邮箱 {settings['email']} 联系 TL8899。", "/contact/", body, extra_keywords=["联系", settings["email"], settings["telegram"]]), encoding="utf-8")
+    body = f"""<section class="section white"><div class="head"><p class="eyebrow">联系我们</p><h1>联系方式</h1><p>内容更新、搜索修正或业务联系，请使用电报、电话或邮箱。请不要发送账号密码、付款资料或身份证件。</p></div><div class="contact-box"><a class="contact-pill" href="{esc(settings['telegram_url'])}">电报 {esc(settings['telegram'])}</a><a class="contact-pill gold" href="tel:{esc(settings['phone'])}">电话 {esc(settings['phone'])}</a><a class="contact-pill" href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a></div><div class="note" style="margin-top:24px">本站内容仅供成年人信息参考。请提前设定预算和时间，若影响睡眠、工作、健康或家庭，应立即停止。</div></section>"""
+    (ROOT / "contact" / "index.html").write_text(layout(settings, "联系我们 | TL8899", f"通过电报 {settings['telegram']}、电话 {settings['phone']} 或邮箱 {settings['email']} 联系 TL8899。", "/contact/", body, extra_keywords=["联系", settings["email"], settings["telegram"], settings["phone"]]), encoding="utf-8")
 
 
 def write_privacy_policy(settings: dict) -> None:
@@ -611,10 +613,10 @@ def write_privacy_policy(settings: dict) -> None:
       <p>我们只在完成上述用途所需的时间内保留相关信息，并采取合理措施保护本地凭据、服务器配置和自动化 token。互联网传输无法保证绝对安全，请避免发送不必要的敏感资料。</p>
 
       <h2>联系我们</h2>
-      <p>如需询问隐私相关问题，请通过 <a href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a> 或 <a href="{esc(settings['telegram_url'])}">Telegram {esc(settings['telegram'])}</a> 联系。</p>
+      <p>如需询问隐私相关问题，请通过 <a href="{esc(settings['telegram_url'])}">Telegram {esc(settings['telegram'])}</a>、电话 <a href="tel:{esc(settings['phone'])}">{esc(settings['phone'])}</a> 或 <a href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a> 联系。</p>
 
       <h2>English Summary</h2>
-      <p>TL8899 LIVE is an adult informational website. We use basic technical logs to operate and secure the site. If Google OAuth is used, access is limited to the authorized Blogger publishing workflow and is not sold or used for advertising profiling. Contact us at {esc(settings['email'])} for privacy questions.</p>
+      <p>TL8899 LIVE is an adult informational website. We use basic technical logs to operate and secure the site. If Google OAuth is used, access is limited to the authorized Blogger publishing workflow and is not sold or used for advertising profiling. Contact us by Telegram {esc(settings['telegram'])}, phone {esc(settings['phone'])}, or email {esc(settings['email'])} for privacy questions.</p>
     </article>
     """
     structured = {
@@ -671,7 +673,7 @@ def write_terms_of_service(settings: dict) -> None:
       <p>本站尽力保持内容清晰、及时和准确，但不保证所有信息适用于每个地区、平台或桌台。使用者应自行确认当地规定、平台条款和个人风险承受能力。</p>
 
       <h2>联系我们</h2>
-      <p>如需联系，请使用 <a href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a> 或 <a href="{esc(settings['telegram_url'])}">Telegram {esc(settings['telegram'])}</a>。</p>
+      <p>如需联系，请使用 <a href="{esc(settings['telegram_url'])}">Telegram {esc(settings['telegram'])}</a>、电话 <a href="tel:{esc(settings['phone'])}">{esc(settings['phone'])}</a> 或 <a href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a>。</p>
 
       <h2>English Summary</h2>
       <p>TL8899 LIVE provides adult informational content only. We do not operate gambling services, process bets, promise winnings, or provide legal or financial advice. Google OAuth access, when granted, is used only for the authorized Blogger publishing workflow.</p>
