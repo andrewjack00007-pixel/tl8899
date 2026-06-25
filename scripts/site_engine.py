@@ -33,9 +33,9 @@ DEFAULT_SETTINGS = {
     "brand_name": "腾龙公司",
     "brand_subtitle": "TL8899 LIVE",
     "site_title": "TL8899 LIVE | 腾龙公司真人娱乐资讯",
-    "site_description": "TL8899 LIVE 腾龙公司中文资讯站，展示百家乐、龙虎、牛牛、轮盘、骰宝、21点、联系方式、SEO文章和负责任娱乐提示。",
+    "site_description": "TL8899 LIVE 腾龙公司中文资讯站，展示百家乐、龙虎、牛牛、轮盘、骰宝、21点、联系方式、搜索文章和负责任娱乐提示。",
     "hero_title": "腾龙公司\n真人娱乐资讯指南",
-    "hero_description": "参考中文企业官网的清晰结构：品牌介绍、业务项目、现场大厅、新闻文章、联系信息和后台管理。所有公开内容以中文为主，并每天自动更新 SEO 文章。",
+    "hero_description": "参考中文企业官网的清晰结构：品牌介绍、业务项目、现场大厅、新闻文章、联系信息和后台管理。所有公开内容以中文为主，并每天自动更新搜索文章。",
     "telegram": "@jhondoe112233",
     "telegram_url": "https://t.me/jhondoe112233",
     "email": "andrewjack0007@gmail.com",
@@ -240,6 +240,29 @@ def settings_keywords(settings: dict) -> list[str]:
     return list(dict.fromkeys(BASE_KEYWORDS + values))
 
 
+def public_title(value: object) -> str:
+    return str(value).replace("TL8899 LIVE：", "腾龙公司：").replace("TL8899 LIVE:", "腾龙公司：")
+
+
+def normalize_keywords(values: list[object], topic: object = "") -> list[str]:
+    cleaned = [public_title(item).strip() for item in values if str(item).strip()]
+    cleaned += BASE_KEYWORDS + [str(topic).strip(), "https://myanmarcasino.cloud/"]
+    return list(dict.fromkeys(item for item in cleaned if item))
+
+
+def visible_article_keywords(post: dict) -> list[str]:
+    visible: list[str] = []
+    for tag in post.get("keywords") or []:
+        text = public_title(tag).strip()
+        if not text or re.search(r"[A-Za-z]", text):
+            continue
+        if text.startswith("http") or len(text) > 18:
+            continue
+        visible.append(text)
+    visible += ["腾龙公司", "腾龙娱乐官网", "皇家在线公司", "百家乐", "龙虎", "牛牛", "轮盘", "骰宝", "二十一点"]
+    return list(dict.fromkeys(visible))[:18]
+
+
 def topic_for_date(date_str: str, shift: int = 0) -> dict:
     start = date(2026, 6, 23)
     try:
@@ -253,17 +276,18 @@ def make_auto_post(date_str: str, slug: str | None = None, slot: int = 1) -> dic
     topic = topic_for_date(date_str, max(slot - 1, 0))
     compact = date_str.replace("-", "")
     slug_suffix = "" if slot == 1 else f"-{slot}"
+    topic_title = public_title(topic["title"])
     return {
         "date": date_str,
         "slot": slot,
         "slug": slug or f"tl8899-{topic['slug_base']}-{compact}{slug_suffix}",
         "topic": topic["topic"],
-        "title": topic["title"] if slot == 1 else f"{topic['title']}（第{slot}篇）",
+        "title": topic_title if slot == 1 else f"{topic_title}（第{slot}篇）",
         "desc": topic["desc"],
         "teaser": topic["teaser"],
         "intro": topic["intro"],
         "rows": topic["rows"],
-        "keywords": BASE_KEYWORDS + [topic["topic"], topic["title"], "https://myanmarcasino.cloud/"],
+        "keywords": normalize_keywords([topic["topic"], topic_title], topic["topic"]),
         "status": "published",
         "source": "auto",
     }
@@ -295,7 +319,9 @@ def read_posts() -> list[dict]:
             post.pop("en_title", None)
             post["status"] = post.get("status") or "published"
             post["slot"] = int(post.get("slot") or 1)
-            post["keywords"] = list(dict.fromkeys((post.get("keywords") or []) + BASE_KEYWORDS + [post.get("topic", ""), "https://myanmarcasino.cloud/"]))
+            post["keywords"] = normalize_keywords(post.get("keywords") or [], post.get("topic", ""))
+        post["title"] = public_title(post.get("title", ""))
+        post["keywords"] = normalize_keywords(post.get("keywords") or [], post.get("topic", ""))
         if post["slug"] not in seen:
             posts.append(post)
             seen.add(post["slug"])
@@ -428,6 +454,10 @@ def write_assets(settings: dict) -> None:
 /* Premium TL8899 visual layer */
 :root{--blue:#075db3;--blue-2:#0a76d1;--gold:#f5b83f;--gold-2:#d4840e;--red:#b71718;--dark:#080d15;--ink:#17202c;--muted:#687385;--line:#e6d8b8;--panel:#fff;--bg:#f5f1e8;--shadow:0 24px 70px rgba(10,16,26,.14)}body{background:linear-gradient(180deg,#fff 0,#f5f1e8 34%,#fff 100%);color:var(--ink)}.top{min-height:94px;padding:18px clamp(24px,5vw,86px);background:rgba(255,255,255,.94);border-bottom:1px solid rgba(160,116,31,.18);box-shadow:0 18px 48px rgba(13,20,33,.09)}.brand{gap:14px;min-width:310px}.crest{width:64px;height:64px;background:radial-gradient(circle at 32% 25%,#fff1ad 0 12%,#e0a326 26%,#c01f1f 52%,#2a1110 53%,#f2c764 64%,#8a4e05 100%);border:1px solid rgba(255,220,122,.85);box-shadow:0 14px 34px rgba(140,33,20,.22),inset 0 2px 0 rgba(255,255,255,.48);font-family:Georgia,serif}.brand strong{font-size:28px;color:#bd7d08;letter-spacing:.02em}.brand small{color:#805310;font-size:12px}.top nav{gap:28px}.top nav a{position:relative;color:#1c2532;font-size:16px}.top nav a:after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:linear-gradient(90deg,var(--gold),var(--red));transform:scaleX(0);transform-origin:left;transition:transform .22s ease}.top nav a:hover:after{transform:scaleX(1)}.quick{padding:10px 14px;border-radius:999px;background:#fff7e7;border:1px solid rgba(200,139,24,.28);color:#9a6206}.hero{min-height:720px;grid-template-columns:minmax(0,760px) minmax(360px,1fr);padding:88px clamp(24px,6vw,104px);background:radial-gradient(circle at 78% 28%,rgba(245,184,63,.25),transparent 24rem),linear-gradient(115deg,rgba(5,8,14,.96),rgba(8,13,21,.86) 53%,rgba(34,22,6,.84)),linear-gradient(135deg,#05080e,#111a27);border-bottom:1px solid rgba(245,184,63,.24)}.hero:before{background:linear-gradient(90deg,rgba(245,184,63,.12) 1px,transparent 1px),linear-gradient(0deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:82px 82px;mask-image:linear-gradient(90deg,#000 0,transparent 94%);opacity:.55}.hero:after{content:"";top:122px;right:clamp(22px,6vw,104px);bottom:84px;width:min(42vw,530px);font-size:0;letter-spacing:0;border-radius:36px;background:radial-gradient(circle at 50% 44%,rgba(245,184,63,.5) 0 8%,transparent 9%),radial-gradient(circle at 50% 44%,#111827 0 20%,#bd1718 21% 29%,#111827 30% 39%,#f4b73d 40% 44%,transparent 45%),linear-gradient(150deg,rgba(255,255,255,.13),rgba(255,255,255,.02));border:1px solid rgba(245,184,63,.42);box-shadow:0 36px 90px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.22)}.hero-inner{max-width:790px}.hero h1{font-size:clamp(46px,6.6vw,92px);letter-spacing:-.045em;text-shadow:0 18px 45px rgba(0,0,0,.35)}.hero p{max-width:700px;color:#e9edf4;font-size:20px}.eyebrow{color:#ffd16a;letter-spacing:.18em}.btn{min-height:54px;padding:14px 26px;border-radius:16px;font-size:16px;box-shadow:none}.btn.primary{background:linear-gradient(135deg,#ffd36b,#e78b0d);box-shadow:0 16px 34px rgba(218,132,14,.28)}.hero .btn:not(.primary){background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.28);color:#fff}.contact-strip{max-width:720px;border-color:rgba(245,184,63,.36);background:rgba(7,13,22,.64);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}.section{padding:92px clamp(24px,6vw,104px)}.section.white{background:linear-gradient(180deg,#fff,#fffaf1)}.head{max-width:980px;margin-bottom:38px}.head h1,.head h2{font-size:clamp(36px,4.4vw,64px);letter-spacing:-.035em}.head p{font-size:19px;color:#5c6675}.grid{gap:24px}.card{border-color:rgba(172,125,37,.2);border-radius:28px;background:rgba(255,255,255,.88);box-shadow:var(--shadow);transition:transform .22s ease,box-shadow .22s ease}.card:hover{transform:translateY(-5px);box-shadow:0 30px 80px rgba(10,16,26,.18)}.card.dark{position:relative;overflow:hidden;background:linear-gradient(155deg,#101826,#0c111a 62%,#261707);border:1px solid rgba(245,184,63,.28)}.card.dark:before{content:"";position:absolute;inset:auto -60px -80px auto;width:190px;height:190px;border-radius:50%;background:rgba(245,184,63,.12)}.card .icon{font-family:Georgia,serif;color:#d99818}.hall{gap:36px}.hall-art{position:relative;min-height:430px;border-radius:38px;background:radial-gradient(circle at 50% 50%,rgba(245,184,63,.7) 0 7%,transparent 8%),radial-gradient(circle at 50% 52%,#0c1420 0 22%,#a21518 23% 31%,#0c1420 32% 42%,#d99a18 43% 46%,transparent 47%),linear-gradient(145deg,#0a111c,#1e150b);box-shadow:inset 0 0 0 1px rgba(245,184,63,.35),inset 0 0 0 18px rgba(255,255,255,.03),0 30px 90px rgba(18,16,12,.26)}.hall-art:before{content:"TL8899 LIVE";position:absolute;left:34px;top:32px;color:#f8d27b;font-weight:950;letter-spacing:.16em}.hall-art:after{content:"BACCARAT  DRAGON TIGER  NIU NIU";position:absolute;left:34px;right:34px;bottom:30px;color:#fff;font-weight:900;letter-spacing:.1em}.articles{gap:24px}.article-card{position:relative;overflow:hidden;min-height:260px;border-radius:28px;border-color:rgba(172,125,37,.22);background:linear-gradient(180deg,#fff,#fffaf1);box-shadow:0 18px 55px rgba(15,24,38,.08)}.article-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--red))}.article-card time{color:#b27307}.article-card h3{font-size:22px;line-height:1.35}.read-more{color:#9b6307}.contact-box{gap:22px}.contact-pill{border:1px solid rgba(245,184,63,.28);background:linear-gradient(135deg,#101827,#142947);box-shadow:0 18px 50px rgba(10,22,42,.16)}.contact-pill.gold{background:linear-gradient(135deg,#fff3c8,#f0a21d);color:#1f1606}.article{max-width:1040px;background:#fff;margin:52px auto;border:1px solid rgba(172,125,37,.18);border-radius:34px;padding:54px clamp(24px,5vw,70px);box-shadow:var(--shadow)}.article h1{font-size:clamp(34px,4.8vw,64px)}.article h2{color:#111827}.note{background:linear-gradient(135deg,#fff8df,#fff1bd);border-color:#e7bd49}.tag-list span{background:#fff5db;color:#8a5a07;border:1px solid rgba(180,124,20,.18)}footer{background:linear-gradient(135deg,#080d15,#101827);border-top:1px solid rgba(245,184,63,.18)}#top{background:linear-gradient(135deg,#ffd36b,#d4840e);box-shadow:0 16px 34px rgba(0,0,0,.22)}@media(max-width:1120px){.hero{grid-template-columns:1fr}.hero:after{position:relative;display:block;right:auto;top:auto;bottom:auto;width:min(100%,520px);height:340px;margin-top:36px}.hero-inner{max-width:850px}}@media(max-width:760px){.top{min-height:auto;padding:14px 18px}.brand strong{font-size:22px}.crest{width:52px;height:52px}.hero{padding:58px 20px}.hero h1{font-size:42px}.hero p{font-size:17px}.section{padding:62px 20px}.article{margin:24px 12px;padding:30px 18px;border-radius:24px}.quick{font-size:14px}.contact-strip{font-size:14px}.hall-art{min-height:300px}}
 """
+    css += """
+.hall-art:before{content:"腾龙公司"}
+.hall-art:after{content:"百家乐  龙虎  牛牛"}
+"""
     js = """
 const topButton=document.getElementById('top');const header=document.querySelector('.top');const menu=document.querySelector('.menu-toggle');window.addEventListener('scroll',()=>{if(!topButton)return;topButton.classList.toggle('show',window.scrollY>500)});topButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));menu?.addEventListener('click',()=>{const open=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
 """
@@ -452,8 +482,8 @@ def write_home(posts: list[dict], settings: dict) -> None:
     <section id="about" class="section white"><div class="head"><p class="eyebrow">关于我们</p><h2>关于 {esc(settings['brand_subtitle'])}</h2><p>面向中文用户的真人娱乐资讯站，覆盖百家乐、龙虎、牛牛、骰宝、轮盘、21点、规则说明、联系方式和负责任娱乐提示。</p></div>
       <div class="hall"><div class="hall-art" aria-label="现场大厅风格图形"></div><div class="grid"><div class="card"><div class="icon">龙</div><h3>龙虎</h3><p>快速牌面大小比较，重点理解和局风险。</p></div><div class="card"><div class="icon">百</div><h3>百家乐</h3><p>庄、闲、和、佣金与免佣变体的基础说明。</p></div><div class="card"><div class="icon">牛</div><h3>牛牛</h3><p>五张牌组合、牛数与倍率表的规则提醒。</p></div></div></div>
     </section>
-    <section id="services" class="section"><div class="head"><p class="eyebrow">业务项目</p><h2>网站功能</h2></div><div class="grid"><div class="card dark"><div class="icon">01</div><h3>每日中文文章</h3><p>自动生成并发布真人娱乐中文 SEO 文章，更新站点地图和 RSS。</p></div><div class="card dark"><div class="icon">02</div><h3>联系方式展示</h3><p>电报、邮箱和结构化资料帮助搜索引擎识别联系渠道。</p></div><div class="card dark"><div class="icon">03</div><h3>后台管理</h3><p>可添加、编辑、删除文章，修改联系信息和管理后台角色。</p></div></div></section>
-    <section class="section white" id="hall"><div class="head"><p class="eyebrow">新闻资讯</p><h2>最新文章</h2><p>所有文章以中文阅读体验为主；SEO 标签用于搜索发现，不代表与其他品牌存在官方关系。</p></div><div class="articles">{article_cards(pub, 6)}</div></section>
+    <section id="services" class="section"><div class="head"><p class="eyebrow">业务项目</p><h2>网站功能</h2></div><div class="grid"><div class="card dark"><div class="icon">01</div><h3>每日中文文章</h3><p>自动生成并发布真人娱乐中文搜索文章，更新站点地图和 RSS。</p></div><div class="card dark"><div class="icon">02</div><h3>联系方式展示</h3><p>电报、邮箱和结构化资料帮助搜索引擎识别联系渠道。</p></div><div class="card dark"><div class="icon">03</div><h3>后台管理</h3><p>可添加、编辑、删除文章，修改联系信息和管理后台角色。</p></div></div></section>
+    <section class="section white" id="hall"><div class="head"><p class="eyebrow">新闻资讯</p><h2>最新文章</h2><p>所有文章以中文阅读体验为主；搜索标签用于搜索发现，不代表与其他品牌存在官方关系。</p></div><div class="articles">{article_cards(pub, 6)}</div></section>
     """
     structured = {"@context": "https://schema.org", "@type": "WebSite", "name": settings["brand_subtitle"], "url": SITE}
     (ROOT / "index.html").write_text(layout(settings, settings["site_title"], settings["site_description"], "/", body, structured=structured), encoding="utf-8")
@@ -466,16 +496,16 @@ def write_blog_index(posts: list[dict], settings: dict) -> None:
 
 
 def write_contact(settings: dict) -> None:
-    body = f"""<section class="section white"><div class="head"><p class="eyebrow">联系我们</p><h1>联系方式</h1><p>内容更新、SEO 修正或业务联系，请使用电报或邮箱。请不要发送账号密码、付款资料或身份证件。</p></div><div class="contact-box"><a class="contact-pill" href="{esc(settings['telegram_url'])}">电报 {esc(settings['telegram'])}</a><a class="contact-pill gold" href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a></div><div class="note" style="margin-top:24px">本站内容仅供成年人信息参考。请提前设定预算和时间，若影响睡眠、工作、健康或家庭，应立即停止。</div></section>"""
+    body = f"""<section class="section white"><div class="head"><p class="eyebrow">联系我们</p><h1>联系方式</h1><p>内容更新、搜索修正或业务联系，请使用电报或邮箱。请不要发送账号密码、付款资料或身份证件。</p></div><div class="contact-box"><a class="contact-pill" href="{esc(settings['telegram_url'])}">电报 {esc(settings['telegram'])}</a><a class="contact-pill gold" href="mailto:{esc(settings['email'])}">{esc(settings['email'])}</a></div><div class="note" style="margin-top:24px">本站内容仅供成年人信息参考。请提前设定预算和时间，若影响睡眠、工作、健康或家庭，应立即停止。</div></section>"""
     (ROOT / "contact" / "index.html").write_text(layout(settings, "联系我们 | TL8899", f"通过电报 {settings['telegram']} 或邮箱 {settings['email']} 联系 TL8899。", "/contact/", body, extra_keywords=["联系", settings["email"], settings["telegram"]]), encoding="utf-8")
 
 
 def write_article(post: dict, settings: dict) -> None:
     rows = "\n".join(f"<tr><td>{esc(name)}</td><td>{esc(note)}</td></tr>" for name, note in (post.get("rows") or []))
-    tags = "".join(f"<span>{esc(tag)}</span>" for tag in list(dict.fromkeys((post.get("keywords") or [])[:18])))
+    tags = "".join(f"<span>{esc(tag)}</span>" for tag in visible_article_keywords(post))
     body = f"""
     <article class="article">
-      <p class="meta-line">{esc(post['date'])} · {esc(post.get('topic','真人娱乐'))} · {esc(settings['brand_subtitle'])}</p>
+      <p class="meta-line">{esc(post['date'])} · {esc(post.get('topic','真人娱乐'))} · {esc(settings['brand_name'])}</p>
       <h1>{esc(post['title'])}</h1>
       <p>{esc(post['desc'])}</p>
       <div class="note">负责任娱乐提示：本文仅供成年人信息参考，不承诺盈利，不提供保证结果的下注方法，也不建议追亏或冲动加注。</div>
@@ -484,8 +514,8 @@ def write_article(post: dict, settings: dict) -> None:
       <div class="table"><table><thead><tr><th>项目</th><th>说明</th></tr></thead><tbody>{rows}</tbody></table></div>
       <h2>新手提醒</h2>
       <ul><li>先看规则，再看赔率，不要只被高赔率吸引。</li><li>提前设定预算和时间，达到上限就停止。</li><li>不要把短期连赢或连输理解成可预测规律。</li><li>如果娱乐开始变成压力，应暂停并寻求帮助。</li></ul>
-      <h2>SEO 标签</h2>
-      <p>以下标签用于搜索发现：tamron casino、腾龙娱乐官网、皇家在线公司、百家乐、龙虎、牛牛。本站不声明与其他品牌存在官方关系。</p>
+      <h2>搜索标签</h2>
+      <p>以下中文标签用于搜索发现：腾龙娱乐官网、皇家在线公司、百家乐、龙虎、牛牛、轮盘、骰宝、二十一点。本站不声明与其他品牌存在官方关系。</p>
       <div class="tag-list">{tags}</div>
       <h2>相关页面</h2>
       <p>延伸阅读：也可以查看 <a href="https://myanmarcasino.cloud/" rel="noopener">https://myanmarcasino.cloud/</a>，用于补充百家乐、龙虎、牛牛等中文规则资料。</p>
