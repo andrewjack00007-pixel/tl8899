@@ -27,7 +27,7 @@ DOMAIN = "tl8899.live"
 SERVER_IP = "76.13.216.172"
 INDEXNOW_KEY = "f64254d0a708461e8b1f2fce8eee9c30"
 INDEXNOW_KEY_LOCATION = f"{SITE}/{INDEXNOW_KEY}.txt"
-ASSET_VERSION = "2026062506"
+ASSET_VERSION = "2026062508"
 
 DEFAULT_SETTINGS = {
     "brand_name": "腾龙公司",
@@ -365,7 +365,7 @@ def header_nav(settings: dict) -> str:
     <header class="top">
       <div class="top-inner">
         <a class="brand" href="/" aria-label="{esc(settings['brand_name'])}首页">
-          <span class="crest">TL</span>
+          <img class="brand-logo" src="/assets/tl8899-logo.png?v={ASSET_VERSION}" alt="{esc(settings['brand_name'])} {esc(settings['brand_subtitle'])} logo" width="290" height="297">
           <span><strong>{esc(settings['brand_name'])}</strong><small>{esc(settings['brand_subtitle'])}</small></span>
         </a>
         <button class="menu-toggle" type="button" aria-label="打开导航" aria-expanded="false">菜单</button>
@@ -390,7 +390,7 @@ def footer(settings: dict) -> str:
     return f"""
     <footer>
       <div class="footer-brand">
-        <span class="crest">TL</span>
+        <img class="footer-logo" src="/assets/tl8899-logo.png?v={ASSET_VERSION}" alt="{esc(settings['brand_name'])} logo" width="290" height="297">
         <div><strong>{esc(settings['brand_name'])} {esc(settings['brand_subtitle'])}</strong>
         <p>专业的真人娱乐资讯指南平台</p></div>
       </div>
@@ -532,6 +532,11 @@ body{font-size:16px;background:#05080d}.top{box-shadow:0 12px 36px rgba(8,12,20,
 footer{grid-template-columns:1fr auto 1.2fr auto;min-height:88px;padding:18px max(56px,calc((100vw - 1600px)/2 + 56px))}.footer-brand .crest{width:44px;height:44px;font-size:15px}.footer-brand strong{font-size:16px}.footer-brand p,footer nav,.footer-note{font-size:13px}.age-mark{width:44px;height:44px}
 }
 @media(min-width:901px) and (max-width:1280px){.top-inner{width:min(100% - 40px,1180px);gap:20px}.top nav{gap:16px}.top nav a{font-size:14px}.contact-chip{font-size:12px;padding:0 12px}.casino-hero{grid-template-columns:1fr .8fr;gap:34px;padding:42px 44px}.hero-copy h1 span{font-size:58px}.hero-copy h1 strong{font-size:44px}.hero-text{font-size:16px}.hero-showpiece{height:310px}.royal-crest{width:250px;height:250px}.royal-crest strong{font-size:76px}.game-strip,.home-cards{max-width:calc(100% - 40px)}.home-cards{grid-template-columns:repeat(3,1fr)}.contact-panel{grid-column:span 2}}
+"""
+    css += """
+.brand-logo,.footer-logo{display:block;object-fit:contain;flex:0 0 auto}.brand-logo{width:58px;height:64px;filter:drop-shadow(0 8px 18px rgba(120,60,20,.18))}.footer-logo{width:42px;height:46px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.18))}
+@media(min-width:901px){.brand-logo{width:74px;height:74px}.footer-logo{width:52px;height:56px}.brand{gap:14px}}
+@media(max-width:900px){.brand-logo{width:54px;height:54px}.footer-logo{width:42px;height:44px}.brand{gap:10px}}
 """
     js = """
 const topButton=document.getElementById('top');const header=document.querySelector('.top');const menu=document.querySelector('.menu-toggle');window.addEventListener('scroll',()=>{if(!topButton)return;topButton.classList.toggle('show',window.scrollY>500)});topButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));menu?.addEventListener('click',()=>{const open=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
