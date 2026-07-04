@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from __future__ import annotations
 
@@ -27,7 +27,8 @@ DOMAIN = "tl8899.live"
 SERVER_IP = "76.13.216.172"
 INDEXNOW_KEY = "f64254d0a708461e8b1f2fce8eee9c30"
 INDEXNOW_KEY_LOCATION = f"{SITE}/{INDEXNOW_KEY}.txt"
-ASSET_VERSION = "2026062510"
+ASSET_VERSION = "2026070401"
+BLOG_PAGE_SIZE = 12
 DEALER_IMAGE_WEBP = f"/assets/casino-dealer-live.webp?v={ASSET_VERSION}"
 DEALER_IMAGE_JPG = f"/assets/casino-dealer-live.jpg?v={ASSET_VERSION}"
 
@@ -482,6 +483,36 @@ def article_cards(posts: list[dict], limit: int | None = None) -> str:
     )
 
 
+def blog_page_url(page: int) -> str:
+    return "/blog/" if page == 1 else f"/blog/page/{page}/"
+
+
+def blog_page_path(page: int) -> Path:
+    if page == 1:
+        return ROOT / "blog" / "index.html"
+    return ROOT / "blog" / "page" / str(page) / "index.html"
+
+
+def blog_page_count(posts: list[dict]) -> int:
+    return max(1, (len(posts) + BLOG_PAGE_SIZE - 1) // BLOG_PAGE_SIZE)
+
+
+def pagination_nav(current: int, total: int) -> str:
+    if total <= 1:
+        return ""
+    items: list[str] = []
+    if current > 1:
+        items.append(f'<a class="page-link page-prev" href="{blog_page_url(current - 1)}">上一页</a>')
+    for page in range(1, total + 1):
+        if page == current:
+            items.append(f'<span class="page-link current" aria-current="page">{page}</span>')
+        else:
+            items.append(f'<a class="page-link" href="{blog_page_url(page)}">{page}</a>')
+    if current < total:
+        items.append(f'<a class="page-link page-next" href="{blog_page_url(current + 1)}">下一页</a>')
+    return '<nav class="pagination" aria-label="文章分页">' + ''.join(items) + '</nav>'
+
+
 def latest_home_list(posts: list[dict], limit: int = 4) -> str:
     icons = ["🂡", "🐉", "♉", "🎲"]
     items = []
@@ -552,6 +583,7 @@ footer{grid-template-columns:1fr auto 1.2fr auto;min-height:88px;padding:18px ma
 .article-card{padding:0}.article-card:before{display:none}.article-card-media{display:block;position:relative;aspect-ratio:16/9;overflow:hidden;background:#0d1118}.article-card-media picture,.article-card-media img{display:block;width:100%;height:100%}.article-card-media img{object-fit:cover;object-position:center 28%;transition:transform .28s ease}.article-card:hover .article-card-media img{transform:scale(1.04)}.article-card-body{display:flex;flex:1;flex-direction:column;padding:18px 22px 22px}.article-card-body p{margin-bottom:16px}.article-cover{margin:24px 0 28px}.article-cover picture{display:block;overflow:hidden;border-radius:24px;border:1px solid rgba(202,145,36,.28);box-shadow:0 20px 58px rgba(12,18,28,.16);background:#0d1118}.article-cover img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:center 28%}.article-cover figcaption{margin-top:10px;color:#7a8390;font-size:13px;text-align:center}
 @media(min-width:901px){.article-card-body{padding:20px 24px 24px}.article-cover{margin-top:30px}.article-cover picture{border-radius:30px}.panel-media.dealer:after{font-size:12px}}
 @media(max-width:900px){.article-card-body{padding:16px 18px 20px}.article-cover picture{border-radius:18px}.article-cover figcaption{text-align:left}}
+.pagination{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin:34px auto 0}.page-link{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:42px;padding:9px 14px;border:1px solid rgba(172,125,37,.28);border-radius:14px;background:#fff;color:#17202c;font-weight:950;box-shadow:0 12px 28px rgba(15,24,38,.06)}.page-link:hover{color:#9b6307;border-color:#d99818}.page-link.current{background:linear-gradient(135deg,#ffd36b,#e78b0d);color:#1f1606;border-color:transparent}.page-prev,.page-next{padding-inline:18px}@media(max-width:760px){.pagination{justify-content:flex-start}.page-link{min-width:38px;min-height:38px;padding:8px 12px}}
 """
     js = """
 const topButton=document.getElementById('top');const header=document.querySelector('.top');const menu=document.querySelector('.menu-toggle');window.addEventListener('scroll',()=>{if(!topButton)return;topButton.classList.toggle('show',window.scrollY>500)});topButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));menu?.addEventListener('click',()=>{const open=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
@@ -605,8 +637,22 @@ def write_home(posts: list[dict], settings: dict) -> None:
 
 def write_blog_index(posts: list[dict], settings: dict) -> None:
     pub = published_posts(posts)
-    body = f"""<section class="section white"><div class="head"><p class="eyebrow">文章</p><h1>真人娱乐中文文章</h1><p>每日更新百家乐、龙虎、牛牛、轮盘、骰宝、21点、赔率、常见错误和负责任娱乐内容。文章不承诺盈利，不提供保证结果的下注方法。</p></div><div class="articles">{article_cards(pub)}</div></section>"""
-    (ROOT / "blog" / "index.html").write_text(layout(settings, "文章 | TL8899 真人娱乐中文资讯", "TL8899 中文文章列表，覆盖百家乐、龙虎、牛牛、轮盘、骰宝、21点、赔率说明和负责任娱乐。", "/blog/", body), encoding="utf-8")
+    total = blog_page_count(pub)
+    for page in range(1, total + 1):
+        start = (page - 1) * BLOG_PAGE_SIZE
+        page_posts = pub[start:start + BLOG_PAGE_SIZE]
+        page_label = "" if page == 1 else f" · 第 {page} 页"
+        body = f"""<section class="section white"><div class="head"><p class="eyebrow">文章</p><h1>真人娱乐中文文章{page_label}</h1><p>每日更新百家乐、龙虎、牛牛、轮盘、骰宝、21点、赔率、常见错误和负责任娱乐内容。文章不承诺盈利，不提供保证结果的下注方法。</p></div><div class="articles">{article_cards(page_posts)}</div>{pagination_nav(page, total)}</section>"""
+        title = "文章 | TL8899 真人娱乐中文资讯" if page == 1 else f"文章第 {page} 页 | TL8899 真人娱乐中文资讯"
+        desc = "TL8899 中文文章列表，覆盖百家乐、龙虎、牛牛、轮盘、骰宝、21点、赔率说明和负责任娱乐。"
+        out_path = blog_page_path(page)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_text(layout(settings, title, desc, blog_page_url(page), body), encoding="utf-8")
+    page_root = ROOT / "blog" / "page"
+    if page_root.exists():
+        for child in page_root.iterdir():
+            if child.is_dir() and child.name.isdigit() and int(child.name) > total:
+                shutil.rmtree(child)
 
 
 def write_contact(settings: dict) -> None:
@@ -778,9 +824,11 @@ def cleanup_post_dirs(posts: list[dict]) -> None:
 def write_discovery(posts: list[dict], settings: dict) -> None:
     pub = published_posts(posts)
     today = shanghai_today().isoformat()
+    page_urls = [(blog_page_url(page), "daily", "0.7") for page in range(2, blog_page_count(pub) + 1)]
     urls = [
         ("/", "daily", "1.0"),
         ("/blog/", "daily", "0.9"),
+        *page_urls,
         ("/contact/", "monthly", "0.7"),
         ("/privacy-policy/", "monthly", "0.6"),
         ("/terms-of-service/", "monthly", "0.6"),
