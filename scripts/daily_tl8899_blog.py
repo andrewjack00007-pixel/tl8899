@@ -7,7 +7,7 @@ import argparse
 from site_engine import SITE, git_commit, git_push, make_auto_post, read_posts, rebuild, shanghai_today, submit_indexnow, verify_public
 
 
-DEFAULT_DAILY_COUNT = 2
+DEFAULT_DAILY_COUNT = 12
 
 
 def posts_for_date(posts: list[dict], date_str: str) -> list[dict]:
@@ -19,7 +19,7 @@ def main() -> int:
     parser.add_argument("--date", default=shanghai_today().isoformat())
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--force", action="store_true")
-    parser.add_argument("--count", type=int, default=DEFAULT_DAILY_COUNT, help="Number of posts to publish; default is 2.")
+    parser.add_argument("--count", type=int, default=DEFAULT_DAILY_COUNT, help=f"Number of posts to publish; default is {DEFAULT_DAILY_COUNT}.")
     args = parser.parse_args()
 
     target_count = max(1, args.count)
