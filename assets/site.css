@@ -45,3 +45,13 @@ footer{grid-template-columns:1fr auto 1.2fr auto;min-height:88px;padding:18px ma
 @media(min-width:901px){.article-card-body{padding:20px 24px 24px}.article-cover{margin-top:30px}.article-cover picture{border-radius:30px}.panel-media.dealer:after{font-size:12px}}
 @media(max-width:900px){.article-card-body{padding:16px 18px 20px}.article-cover picture{border-radius:18px}.article-cover figcaption{text-align:left}}
 .pagination{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin:34px auto 0}.page-link{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:42px;padding:9px 14px;border:1px solid rgba(172,125,37,.28);border-radius:14px;background:#fff;color:#17202c;font-weight:950;box-shadow:0 12px 28px rgba(15,24,38,.06)}.page-link:hover{color:#9b6307;border-color:#d99818}.page-link.current{background:linear-gradient(135deg,#ffd36b,#e78b0d);color:#1f1606;border-color:transparent}.page-prev,.page-next{padding-inline:18px}@media(max-width:760px){.pagination{justify-content:flex-start}.page-link{min-width:38px;min-height:38px;padding:8px 12px}}
+
+/* Real hero artwork replaces the earlier CSS-drawn casino emblem. */
+.hero-copy{z-index:2}.hero-showpiece{position:relative;display:block;height:320px;overflow:hidden;isolation:isolate;background:#090906}
+.hero-showpiece:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#050a11 0,transparent 22%);pointer-events:none}
+.hero-showpiece img{display:block;width:100%;height:100%}
+.hero-showpiece img{object-fit:cover;object-position:70% center;filter:saturate(.96) contrast(1.04);transform:scale(1.02)}
+@media(min-width:901px){.hero-showpiece{position:absolute;inset:0 0 0 48%;height:auto}}
+@media(min-width:901px) and (max-width:1280px){.hero-showpiece{inset:0 0 0 50%;height:auto}}
+@media(max-width:900px){.hero-showpiece{position:relative;inset:auto;height:300px;margin-top:8px;border-radius:18px}.hero-showpiece:after{background:linear-gradient(90deg,#050a11 0,transparent 14%)}.hero-showpiece img{object-position:67% center}}
+@media(max-width:560px){.hero-showpiece{height:238px}.hero-showpiece img{object-position:66% center}}

@@ -27,10 +27,12 @@ DOMAIN = "tl8899.live"
 SERVER_IP = "76.13.216.172"
 INDEXNOW_KEY = "f64254d0a708461e8b1f2fce8eee9c30"
 INDEXNOW_KEY_LOCATION = f"{SITE}/{INDEXNOW_KEY}.txt"
-ASSET_VERSION = "2026070401"
+ASSET_VERSION = "2026071601"
 BLOG_PAGE_SIZE = 12
 DEALER_IMAGE_WEBP = f"/assets/casino-dealer-live.webp?v={ASSET_VERSION}"
 DEALER_IMAGE_JPG = f"/assets/casino-dealer-live.jpg?v={ASSET_VERSION}"
+HERO_IMAGE_WEBP = f"/assets/tl8899-hero-v2.webp?v={ASSET_VERSION}"
+HERO_IMAGE_PNG = f"/assets/tl8899-hero-v2.png?v={ASSET_VERSION}"
 
 DEFAULT_SETTINGS = {
     "brand_name": "腾龙公司",
@@ -585,6 +587,17 @@ footer{grid-template-columns:1fr auto 1.2fr auto;min-height:88px;padding:18px ma
 @media(max-width:900px){.article-card-body{padding:16px 18px 20px}.article-cover picture{border-radius:18px}.article-cover figcaption{text-align:left}}
 .pagination{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin:34px auto 0}.page-link{display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:42px;padding:9px 14px;border:1px solid rgba(172,125,37,.28);border-radius:14px;background:#fff;color:#17202c;font-weight:950;box-shadow:0 12px 28px rgba(15,24,38,.06)}.page-link:hover{color:#9b6307;border-color:#d99818}.page-link.current{background:linear-gradient(135deg,#ffd36b,#e78b0d);color:#1f1606;border-color:transparent}.page-prev,.page-next{padding-inline:18px}@media(max-width:760px){.pagination{justify-content:flex-start}.page-link{min-width:38px;min-height:38px;padding:8px 12px}}
 """
+    css += """
+/* Real hero artwork replaces the earlier CSS-drawn casino emblem. */
+.hero-copy{z-index:2}.hero-showpiece{position:relative;display:block;height:320px;overflow:hidden;isolation:isolate;background:#090906}
+.hero-showpiece:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#050a11 0,transparent 22%);pointer-events:none}
+.hero-showpiece img{display:block;width:100%;height:100%}
+.hero-showpiece img{object-fit:cover;object-position:70% center;filter:saturate(.96) contrast(1.04);transform:scale(1.02)}
+@media(min-width:901px){.hero-showpiece{position:absolute;inset:0 0 0 48%;height:auto}}
+@media(min-width:901px) and (max-width:1280px){.hero-showpiece{inset:0 0 0 50%;height:auto}}
+@media(max-width:900px){.hero-showpiece{position:relative;inset:auto;height:300px;margin-top:8px;border-radius:18px}.hero-showpiece:after{background:linear-gradient(90deg,#050a11 0,transparent 14%)}.hero-showpiece img{object-position:67% center}}
+@media(max-width:560px){.hero-showpiece{height:238px}.hero-showpiece img{object-position:66% center}}
+"""
     js = """
 const topButton=document.getElementById('top');const header=document.querySelector('.top');const menu=document.querySelector('.menu-toggle');window.addEventListener('scroll',()=>{if(!topButton)return;topButton.classList.toggle('show',window.scrollY>500)});topButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));menu?.addEventListener('click',()=>{const open=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
 """
@@ -608,10 +621,10 @@ def write_home(posts: list[dict], settings: dict) -> None:
         <div class="trust-row"><span>信息权威<small>专业团队撰写</small></span><span>更新及时<small>每日资讯更新</small></span><span>安全可靠<small>18+ 负责任娱乐</small></span></div>
         <div class="responsible-bar"><b>18+</b> 负责任娱乐：请在个人可承受的预算内游戏，切勿追逐损失。娱乐有度，理性投注。</div>
       </div>
-      <div class="hero-showpiece" aria-label="TL8899 LIVE 赌场风格标识">
-        <span class="card card-a">A♠</span><span class="card card-b">A♥</span><span class="chip-stack"></span><span class="roulette-wheel"></span><span class="gold-spade">♠</span>
-        <div class="royal-crest"><span class="crown">♛</span><strong>TL</strong><em>{esc(settings['brand_subtitle'])}</em></div>
-      </div>
+      <picture class="hero-showpiece">
+        <source srcset="{HERO_IMAGE_WEBP}" type="image/webp">
+        <img src="{HERO_IMAGE_PNG}" alt="TL8899 LIVE 金色皇冠、扑克牌、筹码与轮盘主题视觉" width="1672" height="941" loading="eager" decoding="async" fetchpriority="high">
+      </picture>
     </section>
 
     <section class="game-strip" aria-label="游戏指南">
@@ -910,4 +923,3 @@ def submit_indexnow(urls: list[str]) -> int | None:
 
 if __name__ == "__main__":
     rebuild()
-
