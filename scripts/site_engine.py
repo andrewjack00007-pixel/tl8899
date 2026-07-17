@@ -24,10 +24,11 @@ except Exception:
 ROOT = Path(os.environ.get("TL8899_ROOT", "/var/www/tl8899"))
 SITE = "https://tl8899.live"
 DOMAIN = "tl8899.live"
+GAME_PLAY_URL = "https://tl616.cc/"
 SERVER_IP = "76.13.216.172"
 INDEXNOW_KEY = "f64254d0a708461e8b1f2fce8eee9c30"
 INDEXNOW_KEY_LOCATION = f"{SITE}/{INDEXNOW_KEY}.txt"
-ASSET_VERSION = "2026071601"
+ASSET_VERSION = "2026071702"
 BLOG_PAGE_SIZE = 12
 DEALER_IMAGE_WEBP = f"/assets/casino-dealer-live.webp?v={ASSET_VERSION}"
 DEALER_IMAGE_JPG = f"/assets/casino-dealer-live.jpg?v={ASSET_VERSION}"
@@ -383,6 +384,7 @@ def header_nav(settings: dict) -> str:
           <a href="/contact/">联系我们</a>
         </nav>
         <div class="header-actions">
+          <a class="contact-chip game" href="{GAME_PLAY_URL}" target="_blank" rel="noopener nofollow sponsored">进入游戏</a>
           <a class="contact-chip telegram" href="{esc(settings['telegram_url'])}">Telegram {esc(settings['telegram'])}</a>
           <a class="contact-chip mail" href="tel:{esc(settings['phone'])}">电话 {esc(settings['phone'])}</a>
         </div>
@@ -598,6 +600,10 @@ footer{grid-template-columns:1fr auto 1.2fr auto;min-height:88px;padding:18px ma
 @media(max-width:900px){.hero-showpiece{position:relative;inset:auto;height:300px;margin-top:8px;border-radius:18px}.hero-showpiece:after{background:linear-gradient(90deg,#050a11 0,transparent 14%)}.hero-showpiece img{object-position:67% center}}
 @media(max-width:560px){.hero-showpiece{height:238px}.hero-showpiece img{object-position:66% center}}
 """
+    css += """
+/* External game entry shared by the homepage and every article. */
+.contact-chip.game{border-color:#d9a53b;background:linear-gradient(135deg,#ffe18a,#d78b11);color:#2a1902}.contact-chip.game:before{content:"▶";background:#9d1517;color:#fff;font-size:9px}.game-play-cta{position:relative;overflow:hidden;margin:30px 0;padding:28px;border:1px solid rgba(194,132,18,.34);border-radius:24px;background:radial-gradient(circle at 92% 12%,rgba(245,184,63,.26),transparent 13rem),linear-gradient(135deg,#0b111b,#171107);color:#fff;box-shadow:0 22px 58px rgba(13,18,26,.18)}.game-play-cta:after{content:"♠";position:absolute;right:24px;bottom:-36px;color:rgba(245,184,63,.14);font:900 150px/1 Georgia,serif;pointer-events:none}.game-play-cta h2{position:relative;z-index:1;margin:4px 0 8px;color:#fff}.game-play-cta p{position:relative;z-index:1;max-width:720px;margin:0 0 18px;color:#dbe3ed}.game-play-kicker{color:#f8cf69!important;font-size:13px;font-weight:950;letter-spacing:.12em}.game-play-button{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 24px;border-radius:12px;background:linear-gradient(135deg,#ffd66f,#d7860d);color:#241501!important;font-weight:950;box-shadow:0 14px 30px rgba(211,131,12,.27)}.game-play-cta small{position:relative;z-index:1;display:block;margin-top:12px;color:#aeb9c7}@media(max-width:760px){.game-play-cta{padding:22px 18px;border-radius:18px}.game-play-button{width:100%}}
+"""
     js = """
 const topButton=document.getElementById('top');const header=document.querySelector('.top');const menu=document.querySelector('.menu-toggle');window.addEventListener('scroll',()=>{if(!topButton)return;topButton.classList.toggle('show',window.scrollY>500)});topButton?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));menu?.addEventListener('click',()=>{const open=header.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
 """
@@ -617,7 +623,7 @@ def write_home(posts: list[dict], settings: dict) -> None:
         <p class="hero-kicker"><span>{esc(settings['brand_subtitle'])}</span> / {esc(settings['brand_name'])}</p>
         <h1><span>{esc(settings['brand_name'])}</span><strong>真人娱乐资讯指南</strong></h1>
         <p class="hero-text">专业提供百家乐、龙虎、牛牛、轮盘、骰宝、黑杰克等真人娱乐场资讯、规则与策略指南，助您轻松掌握游戏精髓。</p>
-        <div class="hero-buttons"><a class="hero-btn primary" href="/blog/">浏览资讯指南</a><a class="hero-btn dark" href="/#hall">进入现场大厅</a></div>
+        <div class="hero-buttons"><a class="hero-btn primary" href="{GAME_PLAY_URL}" target="_blank" rel="noopener nofollow sponsored">立即进入游戏</a><a class="hero-btn dark" href="/blog/">浏览资讯指南</a></div>
         <div class="trust-row"><span>信息权威<small>专业团队撰写</small></span><span>更新及时<small>每日资讯更新</small></span><span>安全可靠<small>18+ 负责任娱乐</small></span></div>
         <div class="responsible-bar"><b>18+</b> 负责任娱乐：请在个人可承受的预算内游戏，切勿追逐损失。娱乐有度，理性投注。</div>
       </div>
@@ -639,7 +645,7 @@ def write_home(posts: list[dict], settings: dict) -> None:
     <section class="home-cards">
       <article class="info-panel" id="about"><h2>关于我们</h2><div class="panel-media lounge"><span>TL</span></div><p>腾龙公司 {esc(settings['brand_subtitle'])} LIVE 致力于为全球用户提供高质量的真人娱乐资讯与专业游戏指南。我们的内容团队由资深玩家与行业专家组成，确保信息的权威性与实用性。</p><a class="outline-link" href="/#about">了解更多</a></article>
       <article class="info-panel" id="services"><h2>业务项目</h2><ul class="service-list"><li><b>♣</b><span>真人娱乐资讯指南<small>提供详细的游戏规则与策略</small></span></li><li><b>技</b><span>游戏技巧与策略<small>专业玩家分享实战经验</small></span></li><li><b>公</b><span>行业动态与公告<small>最新行业资讯与平台公告</small></span></li><li><b>搜</b><span>搜索优化与技术支持<small>快速、稳定、安全的静态站点</small></span></li></ul><a class="text-link" href="/blog/">查看全部项目 →</a></article>
-      <article class="info-panel live-panel" id="hall"><h2>现场大厅</h2><picture class="panel-media dealer"><source srcset="{DEALER_IMAGE_WEBP}" type="image/webp"><img src="{DEALER_IMAGE_JPG}" alt="TL8899 LIVE 真人荷官与现场百家乐桌台" width="1280" height="720" loading="lazy" decoding="async"><span>LIVE</span></picture><p>进入 TL8899 LIVE 现场大厅，体验真实的荷官互动与沉浸式游戏氛围，支持多种热门游戏。</p><a class="gold-link" href="/contact/">立即进入</a></article>
+      <article class="info-panel live-panel" id="hall"><h2>现场大厅</h2><picture class="panel-media dealer"><source srcset="{DEALER_IMAGE_WEBP}" type="image/webp"><img src="{DEALER_IMAGE_JPG}" alt="TL8899 LIVE 真人荷官与现场百家乐桌台" width="1280" height="720" loading="lazy" decoding="async"><span>LIVE</span></picture><p>进入 TL8899 LIVE 现场大厅，体验真实的荷官互动与沉浸式游戏氛围，支持多种热门游戏。</p><a class="gold-link" href="{GAME_PLAY_URL}" target="_blank" rel="noopener nofollow sponsored">立即进入游戏</a></article>
       <article class="info-panel latest-panel"><h2>最新文章</h2>{latest_home_list(pub, 4)}<a class="text-link" href="/blog/">查看全部文章 →</a></article>
       <article class="info-panel contact-panel"><h2>联系方式</h2><p><b>Telegram</b><span>{esc(settings['telegram'])}</span></p><p><b>电话</b><span>{esc(settings['phone'])}</span></p><p><b>邮箱</b><span>{esc(settings['email'])}</span></p><p><b>工作时间</b><span>09:00 - 18:00（GMT+8）</span></p><a class="outline-link wide" href="/contact/">发送消息</a></article>
     </section>
@@ -807,6 +813,13 @@ def write_article(post: dict, settings: dict) -> None:
       <div class="note">负责任娱乐提示：本文仅供成年人信息参考，不承诺盈利，不提供保证结果的下注方法，也不建议追亏或冲动加注。</div>
       <h2>玩法重点</h2>
       <p>{esc(post.get('intro','进入任何真人桌台前，请先阅读规则面板、赔率表、桌台限额和活动条款。'))}</p>
+      <section class="game-play-cta" data-game-play-link="tl616">
+        <p class="game-play-kicker">18+ 外部游戏入口</p>
+        <h2>准备好后进入游戏</h2>
+        <p>请先确认游戏规则、桌台限额和个人预算。外部平台内容与服务由其运营方负责；任何玩法都不能保证盈利。</p>
+        <a class="game-play-button" href="{GAME_PLAY_URL}" target="_blank" rel="noopener nofollow sponsored">立即进入游戏</a>
+        <small>外部链接：tl616.cc · 娱乐有度，切勿追逐损失。</small>
+      </section>
       <div class="table"><table><thead><tr><th>项目</th><th>说明</th></tr></thead><tbody>{rows}</tbody></table></div>
       <h2>新手提醒</h2>
       <ul><li>先看规则，再看赔率，不要只被高赔率吸引。</li><li>提前设定预算和时间，达到上限就停止。</li><li>不要把短期连赢或连输理解成可预测规律。</li><li>如果娱乐开始变成压力，应暂停并寻求帮助。</li></ul>
